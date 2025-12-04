@@ -1,0 +1,86 @@
+/*##################################
+*   Navigation Bar Styles
+##################################*/ 
+header {
+    position: sticky;
+    top: 0;
+    padding: 2rem 3rem;
+    z-index: 100;
+}
+
+header .container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header .container .logo {
+    font-size: var(--font-size-logo);
+    font-weight: 100;
+    color: var(--color-text);
+    text-decoration: none;
+    letter-spacing: .75rem;
+}
+
+header .container .logo span {
+    color: var(--color-primary);
+}
+
+header .container .controls {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-shrink: 0;
+}
+
+header .container .controls .profile .profile-button {
+    border-radius: 1.5rem;
+    width: 10rem;
+    height: 2.5rem;
+    border: .0625rem solid var(--color-border);
+}
+
+/*##################################
+*   Profile Dropdown Styles
+##################################*/ 
+.profile-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.profile-dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: var(--card-bg);
+    color: var(--card-text);
+    min-width: 120px;
+    box-shadow: var(--shadow);
+    border: 1px solid rgba(0,0,0,0.08);
+    z-index: 1;
+}
+
+.profile-dropdown-content a {
+    display: block;
+    padding: 8px 12px;
+    text-decoration: none;
+    color: var(--card-text);
+}
+
+.profile-dropdown:hover .profile-dropdown-content {
+    display: block;
+}
+
+/*##################################
+*   Theme Toggle Button Styles
+##################################*/ 
+.theme-toggle {
+    border-radius: 50%;
+    width: 2.5rem;
+    height: 2.5rem;
+    cursor: pointer;
+    border: none;
+    font-size: var(--font-size-large);
+    background: transparent;
+}
