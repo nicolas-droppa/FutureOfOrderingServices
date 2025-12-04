@@ -1,0 +1,17 @@
+services:
+  db:
+    image: postgres:16
+    container_name: laravel_postgres
+    ports:
+      - ${DB_PORT}:${DB_PORT}
+    environment:
+      - POSTGRES_HOST=${DB_HOST}
+      - POSTGRES_DB=${DB_DATABASE}
+      - POSTGRES_USER=${DB_USERNAME}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_PORT=${DB_PORT}
+    volumes:
+      - db:/var/lib/postgresql/data
+
+volumes:
+  db:
