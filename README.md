@@ -57,3 +57,14 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+## Start your app
+- fisrt install PHP, composer and laravel istaller. Easiest way is to use single command for your OS form laravel documentation in section "Creating a Laravel Application": [Installation](https://laravel.com/docs/12.x/installation)
+- add DB_PORT, DB_DATABASE, DB_USERNAME, DB_PASSWORD to your .env file. as shown in .env.example
+- run docker-compose in the same directory as your project ```sudo docker compose up -d```
+- to shut down docker, run ```sudo docker compose down```
+
+## shema dump
+in order to have our db shema at disposal so we dont have to search all the migration files, run:
+```php artisan schema:dump```
+after running migrations
