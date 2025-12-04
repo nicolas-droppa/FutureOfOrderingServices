@@ -1,0 +1,29 @@
+:root {
+    --color-bg: #F8F8F8;
+    --color-text: #000000;
+
+    --color-primary: #7C58FB;
+
+    --color-border: #5a5a5a;
+    --shadow: 0px 8px 16px rgba(0,0,0,0.12);
+
+    --font-size-logo: 1.75rem;
+    --font-size-large: 1.25rem;
+    --font-size-base: 1rem;
+    --font-size-small: 0.875rem;
+}
+
+.theme-dark {
+    --color-bg: #121212;
+    --color-text: #f0f0f0;
+
+    --color-border: #666666;
+
+    --shadow: 0px 8px 16px rgba(0,0,0,0.5);
+}
+
+body {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    transition: background-color 0.2s ease, color 0.2s ease;
+}

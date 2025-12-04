@@ -1,0 +1,2 @@
+// Shared constants for frontend components
+export const DARK_MODE_STORAGE_KEY = 'app_dark_mode';

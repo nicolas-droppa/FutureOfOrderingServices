@@ -1,0 +1,25 @@
+:root {
+    --color-bg: #F8F8F8;
+    --color-text: #000000;
+
+    --color-primary: #7C58FB;
+
+    --color-border: #333333;
+    --shadow: 0px 8px 16px rgba(0,0,0,0.12);
+}
+
+.theme-dark {
+    --color-bg: #121212;
+    --color-text: #f0f0f0;
+
+    --color-border: #666666;
+
+    --shadow: 0px 8px 16px rgba(0,0,0,0.5);
+}
+
+main {
+    display: flex;
+    height: 90vh;
+    align-items: center;
+    justify-content: center;
+}
