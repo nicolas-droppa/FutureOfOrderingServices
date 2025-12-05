@@ -59,7 +59,7 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
 
 ## Start your app
-- fisrt install PHP, composer and laravel istaller. Easiest way is to use single command for your OS form laravel documentation in section "Creating a Laravel Application": [Installation](https://laravel.com/docs/12.x/installation)
+- first install PHP, composer and laravel installer. Easiest way is to use single command for your OS form laravel documentation in section "Creating a Laravel Application": [Installation](https://laravel.com/docs/12.x/installation)
 - add DB_PORT, DB_DATABASE, DB_USERNAME, DB_PASSWORD to your .env file. as shown in .env.example
 - run these commands `composer install` `copy .env.example .env` `php artisan key:generate`
 - you'll have to install extension for postgres db `php-pgsql` linux: `sudo apt install php-pgsql`; windows: May God have mercy on you
