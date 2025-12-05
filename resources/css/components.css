@@ -1,21 +1,20 @@
 /*##################################
 *   Navigation Bar Styles
 ##################################*/ 
-header {
+.base-header {
     position: sticky;
     top: 0;
     padding: 2rem 3rem;
     z-index: 100;
 }
 
-header .container {
+.base-header .container {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
+    width: 100%;
 }
 
-header .container .logo {
+.base-header .container .logo {
     font-size: var(--font-size-logo);
     font-weight: 100;
     color: var(--color-text);
@@ -23,18 +22,20 @@ header .container .logo {
     letter-spacing: .75rem;
 }
 
-header .container .logo span {
+.base-header .container .logo span {
     color: var(--color-primary);
 }
 
-header .container .controls {
+.base-header .container .controls {
+    position: absolute;
+    right: 3rem;
     display: flex;
     align-items: center;
     gap: 0.5rem;
     flex-shrink: 0;
 }
 
-header .container .controls .profile .profile-button {
+.base-header .container .controls .profile .profile-button {
     border-radius: 1.5rem;
     width: 10rem;
     height: 2.5rem;
