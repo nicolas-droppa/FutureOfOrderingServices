@@ -15,7 +15,7 @@
 
 <body>
 
-<header>
+<div class="base-header">
     <div class="container">
 
         <a href="/" class="logo">BEX<span>O</span>RA</a>
@@ -42,7 +42,7 @@
 
         </div>
     </div>
-</header>
+</div>
 
 <main class="main">
     @yield('content')
