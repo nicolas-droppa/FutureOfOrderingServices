@@ -6,18 +6,12 @@
 <div class="welcome-container">
     <div class="welcome-card">
         <h1>Book an appointment.</h1>
-        <input 
-            type="text" 
-            placeholder="Vyhľadať..." 
-            style="
-                padding: 12px 20px;
-                font-size: 16px;
-                border: 1px solid #ddd;
-                border-radius: 4px;
-                width: 400px;
-                max-width: 90%;
-            "
-        >
+        <input type="text" placeholder="Reservation for a beard trim on Friday at 15:00.">
+    </div>
+
+    <div class="welcome-buttons">
+        <a href="/manualBooking" class="button button-primary">Manual booking</a>
+        <a href="/myAppointments" class="button button-secondary">My appointments</a>
     </div>
 </div>
 @endsection
