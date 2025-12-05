@@ -35,7 +35,7 @@
                     <a href="/profile">Profile</a>
                     <form method="POST" action="/logout">
                         @csrf
-                        <button type="submit">Odhlásiť sa</button>
+                        <button type="submit">Log-out</button>
                     </form>
                 </div>
             </div>

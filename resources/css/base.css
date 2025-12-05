@@ -1,16 +1,47 @@
 :root {
     --color-bg: #F8F8F8;
+    --color-bg-complement: #F6F6F6;
     --color-text: #000000;
 
     --color-primary: #7C58FB;
 
     --color-border: #5a5a5a;
-    --shadow: 0px 8px 16px rgba(0,0,0,0.12);
+    --color-box-shadow: rgba(0,0,0,0.12);
+    --color-box-shadow-input: rgba(161, 171, 189, 0.3);
+
+    --color-placeholder: rgba(0,0,0,0.45);
 
     --font-size-logo: 1.5rem;
     --font-size-large: 1.25rem;
     --font-size-base: 1rem;
     --font-size-small: 0.875rem;
+}
+
+.theme-dark {
+    --color-bg: #18181f;
+    --color-bg-complement: #1b1b24;
+    --color-text: #f0f0f0;
+
+    --color-border: #666666;
+    --color-box-shadow: rgba(0,0,0,0.12);
+    --color-box-shadow-input: rgba(7, 7, 7, 0.521);
+
+    --color-placeholder: rgba(248, 248, 248, 0.45);
+}
+
+@font-face {
+    font-family: 'Novelin-Light';
+    src: url('../fonts/Novelin-Light.otf') format('opentype');
+}
+
+@font-face {
+    font-family: 'Novelin-Regular';
+    src: url('../fonts/Novelin-Regular.otf') format('opentype');
+}
+
+@font-face {
+    font-family: 'Novelin-Bold';
+    src: url('../fonts/Novelin-Bold.otf') format('opentype');
 }
 
 .theme-dark {
@@ -20,10 +51,12 @@
     --color-border: #666666;
 
     --shadow: 0px 8px 16px rgba(0,0,0,0.5);
+    --placeholder-color: rgba(255,255,255,0.55);
 }
 
 body {
     background-color: var(--color-bg);
     color: var(--color-text);
+    font-family: Novelin-Regular, sans-serif;
     transition: background-color 0.2s ease, color 0.2s ease;
 }

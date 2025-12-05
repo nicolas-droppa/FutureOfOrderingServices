@@ -1,4 +1,19 @@
 /*##################################
+*   Placeholder Styles
+##################################*/ 
+input::placeholder,
+textarea::placeholder,
+select::placeholder {
+    color: var(--placeholder-color);
+    opacity: 1;
+}
+
+::-webkit-input-placeholder { color: var(--placeholder-color); }
+::-moz-placeholder { color: var(--placeholder-color); opacity: 1; }
+:-ms-input-placeholder { color: var(--placeholder-color); }
+::-ms-input-placeholder { color: var(--placeholder-color); }
+
+/*##################################
 *   Navigation Bar Styles
 ##################################*/ 
 .base-header {
@@ -16,10 +31,11 @@
 
 .base-header .container .logo {
     font-size: var(--font-size-logo);
+    font-family: Novelin-Light, sans-serif;
     font-weight: 100;
     color: var(--color-text);
     text-decoration: none;
-    letter-spacing: .75rem;
+    letter-spacing: .5rem;
 }
 
 .base-header .container .logo span {
@@ -31,7 +47,7 @@
     right: 3rem;
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 1.5rem;
     flex-shrink: 0;
 }
 
