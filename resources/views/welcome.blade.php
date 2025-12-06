@@ -13,12 +13,12 @@
         <a href="/manualBooking" class="button button-primary">
             <h2 class="title">Manual booking</h2>
             <p class="description">Book your appointments manually with standard selection.</p>
-            <div class="icon"></div>
+            <div class="icon"><i class="fa-solid fa-filter"></i></div>
         </a>
         <a href="/myAppointments" class="button button-secondary">
             <h2 class="title">My appointments</h2>
-            <p class="description">Manage all your appointments from one place.</p>
-            <div class="icon"></div>
+            <p class="description">Manage all your appointments from one place with ease.</p>
+            <div class="icon"><i class="fa-solid fa-calendar"></i></div>
         </a>
     </div>
 </div>

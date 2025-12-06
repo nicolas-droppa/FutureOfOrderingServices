@@ -2,11 +2,17 @@
     --color-bg: #F8F8F8;
     --color-bg-complement: #F6F6F6;
     --color-text: #080808;
-    --color-text-white: #f8f8f8;
+    --color-text-white: #f3f3f3;
+    --color-text-unimportant: #ebebeb;
+    --color-text-unimportant-hover: #f8f8f8;
+    --color-text-unimportant-dark: #646464;
+    --color-text-unimportant-dark-hover: #444444;
 
     --color-primary: #7C58FB;
+    --color-primary-hover: #6a48e4;
 
     --color-border: #5a5a5a;
+    --color-border-hover:rgb(77, 77, 77);
     --color-box-shadow: rgba(0,0,0,0.12);
     --color-box-shadow-input: rgba(161, 171, 189, 0.3);
 
@@ -22,6 +28,9 @@
     --color-bg: #18181f;
     --color-bg-complement: #1b1b24;
     --color-text: #f0f0f0;
+    --color-text-white: #131313;
+    --color-text-unimportant: #c2c2c2;
+    --color-text-unimportant-hover: #d3d2d2;
 
     --color-border: #666666;
     --color-box-shadow: rgba(0,0,0,0.12);
@@ -70,30 +79,68 @@ main {
 }
 
 .welcome-container .welcome-buttons .button {
+    position: relative;
     width: 100%;
     padding: .5rem 1rem;
     border-radius: 1rem;
+    transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 .welcome-container .welcome-buttons .title {
     font-family: Inter-Bold, sans-serif;
     letter-spacing: .15rem;
-    opacity: 1;
+    color: var(--color-text-unimportant);
 }
 
 .welcome-container .welcome-buttons .description {
     margin-top: 1rem;
     font-size: var(--font-size-small);
-    opacity: 0.9;
+    color: var(--color-text-unimportant);
 }
 
 .welcome-container .welcome-buttons .button-primary {
     background-color: var(--color-bg-complement);
-    border: .0625rem solid var(--color-primary);
+    border: .0625rem solid var(--color-border);
+}
+
+.welcome-container .welcome-buttons .button-primary .title,
+.welcome-container .welcome-buttons .button-primary .description {
+    color: var(--color-text-unimportant-dark);
 }
 
 .welcome-container .welcome-buttons .button-secondary {
     background-color: var(--color-primary);
     border: .0625rem solid var(--color-primary);
+    color: var(--color-text-white);
+}
+
+.welcome-container .welcome-buttons .button-primary:hover  {
+    background-color: #ebebeb;
+    border: .0625rem solid var(--color-border-hover);
+    transition: background-color 0.2s ease, border 0.2s ease;
+}
+
+.welcome-container .welcome-buttons .button-secondary:hover {
+    background-color: var(--color-primary-hover);
+    border: .0625rem solid var(--color-primary-hover);
     color: var(--color-text-white); 
+}
+
+.welcome-container .welcome-buttons .button-secondary:hover .description,
+.welcome-container .welcome-buttons .button-secondary:hover .title {
+    color: var(--color-text-unimportant-hover);
+}
+
+.welcome-container .welcome-buttons .button-primary:hover .title,
+.welcome-container .welcome-buttons .button-primary:hover .description {
+    color: var(--color-text-unimportant-dark-hover);
+}
+
+.welcome-container .welcome-buttons .icon {
+    position: absolute;
+    right: 1rem;
+    top: .5rem;
+    font-size: 1.25rem;
+    color: var(--color-text);
+    opacity: .2; 
 }

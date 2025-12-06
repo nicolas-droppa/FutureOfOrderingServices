@@ -4,7 +4,7 @@
 input::placeholder,
 textarea::placeholder,
 select::placeholder {
-    color: var(--placeholder-color);
+    color: var(--color-placeholder);
     opacity: 1;
 }
 
