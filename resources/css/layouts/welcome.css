@@ -1,13 +1,16 @@
 :root {
     --color-bg: #F8F8F8;
     --color-bg-complement: #F6F6F6;
-    --color-text: #000000;
+    --color-text: #080808;
+    --color-text-white: #f8f8f8;
 
     --color-primary: #7C58FB;
 
     --color-border: #5a5a5a;
     --color-box-shadow: rgba(0,0,0,0.12);
     --color-box-shadow-input: rgba(161, 171, 189, 0.3);
+
+    --color-placeholder: rgba(0,0,0,0.45);
 
     --font-size-logo: 1.5rem;
     --font-size-large: 1.25rem;
@@ -42,9 +45,9 @@ main {
 }
 
 .welcome-container .welcome-card h1 {
-    font-size: 2.25rem;
-    font-family: Novelin-Bold, sans-serif;
-    letter-spacing: 1rem;
+    font-size: 2.5rem;
+    font-weight: 600;
+    letter-spacing: 1.25rem;
     margin-bottom: 1rem;
 }
 
@@ -62,7 +65,7 @@ main {
     margin-top: 2rem;
     display: flex;
     width: 50rem;
-    height: 5rem;
+    height: 6.5rem;
     gap: 1rem;
 }
 
@@ -72,10 +75,25 @@ main {
     border-radius: 1rem;
 }
 
+.welcome-container .welcome-buttons .title {
+    font-family: Inter-Bold, sans-serif;
+    letter-spacing: .15rem;
+    opacity: 1;
+}
+
+.welcome-container .welcome-buttons .description {
+    margin-top: 1rem;
+    font-size: var(--font-size-small);
+    opacity: 0.9;
+}
+
 .welcome-container .welcome-buttons .button-primary {
-    background-color: red;
+    background-color: var(--color-bg-complement);
+    border: .0625rem solid var(--color-primary);
 }
 
 .welcome-container .welcome-buttons .button-secondary {
-    background-color: green;
+    background-color: var(--color-primary);
+    border: .0625rem solid var(--color-primary);
+    color: var(--color-text-white); 
 }

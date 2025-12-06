@@ -1,7 +1,8 @@
 :root {
     --color-bg: #F8F8F8;
     --color-bg-complement: #F6F6F6;
-    --color-text: #000000;
+    --color-text: #080808;
+    --color-text-white: #f8f8f8;
 
     --color-primary: #7C58FB;
 
@@ -30,18 +31,24 @@
 }
 
 @font-face {
-    font-family: 'Novelin-Light';
-    src: url('../fonts/Novelin-Light.otf') format('opentype');
+    font-family: 'Inter-Bold';
+    src: url('../fonts/Inter/Inter_18pt-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
 }
 
 @font-face {
-    font-family: 'Novelin-Regular';
-    src: url('../fonts/Novelin-Regular.otf') format('opentype');
+    font-family: 'Inter-SemiBold';
+    src: url('../fonts/Inter/Inter_18pt-SemiBold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
 }
 
 @font-face {
-    font-family: 'Novelin-Bold';
-    src: url('../fonts/Novelin-Bold.otf') format('opentype');
+    font-family: 'Inter-Regular';
+    src: url('../fonts/Inter/Inter_18pt-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
 }
 
 .theme-dark {
@@ -57,6 +64,6 @@
 body {
     background-color: var(--color-bg);
     color: var(--color-text);
-    font-family: Novelin-Regular, sans-serif;
+    font-family: Inter-Regular, sans-serif;
     transition: background-color 0.2s ease, color 0.2s ease;
 }

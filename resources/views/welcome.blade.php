@@ -10,8 +10,16 @@
     </div>
 
     <div class="welcome-buttons">
-        <a href="/manualBooking" class="button button-primary">Manual booking</a>
-        <a href="/myAppointments" class="button button-secondary">My appointments</a>
+        <a href="/manualBooking" class="button button-primary">
+            <h2 class="title">Manual booking</h2>
+            <p class="description">Book your appointments manually with standard selection.</p>
+            <div class="icon"></div>
+        </a>
+        <a href="/myAppointments" class="button button-secondary">
+            <h2 class="title">My appointments</h2>
+            <p class="description">Manage all your appointments from one place.</p>
+            <div class="icon"></div>
+        </a>
     </div>
 </div>
 @endsection
