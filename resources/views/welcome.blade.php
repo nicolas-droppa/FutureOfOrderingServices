@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Domov')
+@section('title', 'Bexora | Book a Service')
 
 @section('content')
 <div class="welcome-container">
