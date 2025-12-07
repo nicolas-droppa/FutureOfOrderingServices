@@ -18,6 +18,13 @@
 
     --color-placeholder: rgba(0,0,0,0.45);
 
+    --color-theme-background-light: #F6F6F6;
+    --color-theme-foreground-light: #c2c2c2;
+    --color-theme-accent-light: #1b1b1b;
+    --color-theme-background-dark: #1a1a20;
+    --color-theme-foreground-dark: #28272c;
+    --color-theme-accent-dark: #d8d8d8;
+
     --font-size-logo: 1.5rem;
     --font-size-large: 1.25rem;
     --font-size-base: 1rem;

@@ -21,10 +21,49 @@
         <a href="/" class="logo">BEX<span>O</span>RA</a>
 
         <div class="controls">
-
-            <button id="themeToggle" class="theme-toggle" aria-label="Toggle theme">
-                <!-- Icon loaded from: js/components/themeToggler.js -->
-            </button>
+            <div class="settings-menu" id="settingsMenu">
+                <i class="fa-solid fa-gear"></i>
+            </div>
+            <div class="settings-menu-content hidden" id="settingsMenuContent">
+                <h3 class="setting-title">Settings</h3>
+                <div class="setting-item">
+                    <div class="title">Appearance</div>
+                    <div class="divider"></div>
+                    <div class="options">
+                        <div class="option" id="lightModeOption">
+                            <div class="background">
+                                <div class="foreground">
+                                    <div class="text">Aa</div>
+                                </div>
+                            </div>
+                            <span><i class="fa-solid fa-circle"></i>Light</span>
+                        </div>
+                        <div class="option" id="darkModeOption">
+                            <div class="background">
+                                <div class="foreground">
+                                    <div class="text">Aa</div>
+                                </div>
+                            </div>
+                            <span><i class="fa-solid fa-circle"></i>Dark</span>
+                        </div>
+                        <div class="option" id="systemModeOption">
+                            <div class="background-double">
+                                <div class="background-left">
+                                    <div class="foreground-left">
+                                        <div class="text-left">Aa</div>
+                                    </div>
+                                </div>
+                                <div class="background-right">
+                                    <div class="foreground-right">
+                                        <div class="text-left">Aa</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <span><i class="fa-solid fa-circle"></i>System</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <div class="profile">
                 <button id="profileButton" class="profile-button">
@@ -51,6 +90,8 @@
 <footer class="footer">
     © 2025 BEXORA
 </footer>
+
+<div id="settingsOverlay" class="settings-overlay hidden"></div>
 
 </body>
 </html>

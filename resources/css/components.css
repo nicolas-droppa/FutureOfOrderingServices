@@ -1,3 +1,52 @@
+:root {
+    --color-bg: #F8F8F8;
+    --color-bg-complement: #F6F6F6;
+    --color-text: #080808;
+    --color-text-white: #f3f3f3;
+    --color-text-unimportant: #ebebeb;
+    --color-text-unimportant-hover: #f8f8f8;
+    --color-text-unimportant-dark: #646464;
+    --color-text-unimportant-dark-hover: #444444;
+
+    --color-menu-bg: #edf1f5;
+    --color-menu-complement: #533636;
+
+    --color-primary: #7C58FB;
+    --color-primary-hover: #6a48e4;
+
+    --color-border: #5a5a5a;
+    --color-border-hover:rgb(77, 77, 77);
+    --color-box-shadow: rgba(0,0,0,0.12);
+    --color-box-shadow-input: rgba(161, 171, 189, 0.3);
+
+    --color-placeholder: rgba(0,0,0,0.45);
+
+    --color-theme-background-light: #F6F6F6;
+    --color-theme-foreground-light: #c2c2c2;
+    --color-theme-accent-light: #1b1b1b;
+    --color-theme-background-dark: #1a1a20;
+    --color-theme-foreground-dark: #28272c;
+    --color-theme-accent-dark: #d8d8d8;
+
+    --font-size-logo: 1.5rem;
+    --font-size-large: 1.25rem;
+    --font-size-base: 1rem;
+    --font-size-small: 0.875rem;
+}
+
+.theme-dark {
+    --color-bg: #18181f;
+    --color-bg-complement: #1b1b24;
+    --color-text: #f0f0f0;
+    --color-text-white: #131313;
+    --color-text-unimportant: #c2c2c2;
+    --color-text-unimportant-hover: #d3d2d2;
+
+    --color-border: #666666;
+    --color-box-shadow: rgba(0,0,0,0.12);
+    --color-box-shadow-input: rgba(11, 11, 12, 0.575);
+}
+
 /*##################################
 *   Placeholder Styles
 ##################################*/ 
@@ -47,7 +96,7 @@ select::placeholder {
     right: 3rem;
     display: flex;
     align-items: center;
-    gap: 1.5rem;
+    gap: 2.5rem;
     flex-shrink: 0;
 }
 
@@ -90,14 +139,175 @@ select::placeholder {
 }
 
 /*##################################
-*   Theme Toggle Button Styles
+*   Settings Menu Styles
 ##################################*/ 
-.theme-toggle {
-    border-radius: 50%;
-    width: 2.5rem;
-    height: 2.5rem;
-    cursor: pointer;
+.settings-menu i {
     border: none;
-    font-size: var(--font-size-large);
+    font-size: 1.5rem;
     background: transparent;
+    color: var(--color-primary);
+    z-index: 100000;
+}
+
+.settings-menu i:hover {
+    color: var(--color-primary-hover);
+}
+
+.settings-menu-content {
+    position: absolute;
+    top: -.3rem;
+    right: 12rem;
+    background-color: var(--color-box-shadow-input);
+    color: var(--card-text);
+    min-width: 25rem;
+    z-index: -1;
+    border-radius: 0.5rem;
+    color: var(--color-text-unimportant-dark);
+}
+
+.settings-menu-content .setting-title {
+    padding: .75rem 1rem;
+    background-color: var(--color-bg-complement);
+    border-top-left-radius: .5rem;
+    letter-spacing: .1rem;
+}
+
+.settings-menu-content .setting-item {
+    padding: 1.25rem 1.25rem 2rem 1.25rem;
+    margin-top: .25rem;
+    background-color: var(--color-bg-complement);
+}
+
+.settings-menu-content .setting-item .title {
+    letter-spacing: .1rem;
+}
+
+.settings-menu-content .setting-item:last-child {
+    border-bottom-left-radius: .5rem;
+    border-bottom-right-radius: .5rem;
+}
+
+.settings-menu-content .divider {
+    width: 100%;
+    height: .0625rem;
+    margin: .25rem 0;
+    background-color: var(--color-text-unimportant-dark);
+    opacity: 0.5;
+}
+
+.settings-menu-content .setting-item .options {
+    display: flex;
+    flex-direction: row;
+    gap: .5rem;
+    margin-top: 1rem;
+}
+
+.settings-menu-content .setting-item .options span {
+    letter-spacing: normal;
+    display: flex;
+    align-items: center;
+}
+
+.settings-menu-content .setting-item .options span i {
+    font-size: .5rem;
+    margin-right: .25rem;
+}
+
+.settings-menu-content .setting-item .options .option {
+    width: 100%;
+}
+
+.settings-menu-content .setting-item .options .option:hover {
+    color: var(--color-primary-hover)!important;
+    cursor: pointer;
+}
+
+.settings-menu-content .setting-item .options .option .background,
+.settings-menu-content .setting-item .options .option .background-double {
+    position: relative;
+    width: 100%;
+    height: 6rem;
+    background-color: var(--color-theme-background-light);
+    border-radius: 1rem;
+    outline: .1rem solid var(--color-border);
+}
+
+.settings-menu-content .setting-item .options .option .background-double {
+    background-color: transparent;
+}
+
+.settings-menu-content .setting-item .options #darkModeOption .background {
+    background-color: var(--color-theme-background-dark)
+}
+
+.settings-menu-content .setting-item .options .option .background .foreground, 
+.settings-menu-content .setting-item .options .option .background-double .background-left .foreground-left,
+.settings-menu-content .setting-item .options .option .background-double .background-right .foreground-right {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 80%;
+    height: 80%;
+    background-color: var(--color-theme-foreground-light);
+    padding: .5rem;
+    border-bottom-right-radius: 0;
+    font-weight: bold;
+}
+
+.settings-menu-content .setting-item .options .option .background .foreground {
+    border-bottom-right-radius: 1rem;
+    color: var(--color-theme-accent-light);
+}
+
+.settings-menu-content .setting-item .options #darkModeOption .background .foreground {
+    background-color: var(--color-theme-foreground-dark);
+    color: var(--color-theme-accent-dark);
+    border-bottom-right-radius: 1rem;
+}
+
+.settings-menu-content .setting-item .options .option .background-double {
+    display: flex;
+    flex-direction: row;
+    color: var(--color-theme-accent-light);
+}
+
+.settings-menu-content .setting-item .options .option .background-double .background-left,
+.settings-menu-content .setting-item .options .option .background-double .background-right {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
+    background-color: var(--color-theme-background-light);
+    border-bottom-left-radius: 1rem;
+    border-top-left-radius: 1rem;
+}
+
+.settings-menu-content .setting-item .options .option .background-double .background-right {
+    background-color: var(--color-theme-background-dark);
+    color: var(--color-theme-accent-dark);
+    border-bottom-right-radius: 1rem;
+    border-top-right-radius: 1rem;
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+}
+
+.settings-menu-content .setting-item .options .option .background-double .background-right .foreground-right {
+    background-color: var(--color-theme-foreground-dark);
+    border-bottom-right-radius: 1rem;
+}
+
+/*##################################
+*   Settings Overlay Styles
+##################################*/ 
+.settings-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.25);
+    z-index: 10;
+}
+
+/* Active / toggled visual for option */
+.settings-menu-content .setting-item .options .option.toggled {
+    color: var(--color-primary);
 }

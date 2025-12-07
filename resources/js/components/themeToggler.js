@@ -66,3 +66,40 @@ if (button) {
 } else {
     console.warn('[themeToggler] #themeToggle not found');
 }
+
+/**
+ * Programmatically set theme from other UI (light | dark | system)
+ * @param {'light'|'dark'|'system'} themeName
+ */
+export function setTheme(themeName) {
+    if (!themeName) return;
+    if (themeName === 'light') {
+        body.classList.remove('theme-dark');
+        localStorage.setItem(DARK_MODE_STORAGE_KEY, 'disabled');
+        updateToggleButtonContent(false);
+        console.log('[themeToggler] theme set to light');
+        return;
+    }
+
+    if (themeName === 'dark') {
+        body.classList.add('theme-dark');
+        localStorage.setItem(DARK_MODE_STORAGE_KEY, 'enabled');
+        updateToggleButtonContent(true);
+        console.log('[themeToggler] theme set to dark');
+        return;
+    }
+
+    if (themeName === 'system') {
+        localStorage.removeItem(DARK_MODE_STORAGE_KEY);
+        const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (prefersDark) {
+            body.classList.add('theme-dark');
+            updateToggleButtonContent(true);
+        } else {
+            body.classList.remove('theme-dark');
+            updateToggleButtonContent(false);
+        }
+        console.log('[themeToggler] theme set to system (cleared explicit preference)');
+        return;
+    }
+}
