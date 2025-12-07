@@ -6,7 +6,7 @@
 <div class="welcome-container">
     <div class="welcome-card">
         <h1>Book an appointment.</h1>
-        <input type="text" placeholder="Reservation for a beard trim on Friday at 15:00.">
+        <input type="text" placeholder="Text appended from textGenerator.js">
     </div>
 
     <div class="welcome-buttons">
