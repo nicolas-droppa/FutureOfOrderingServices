@@ -8,11 +8,10 @@
     --color-text-unimportant-dark: #646464;
     --color-text-unimportant-dark-hover: #444444;
 
-    --color-menu-bg: #edf1f5;
-    --color-menu-complement: #533636;
-
     --color-primary: #7C58FB;
     --color-primary-hover: #6a48e4;
+
+    --color-button-hover: #ebebeb;
 
     --color-border: #5a5a5a;
     --color-border-hover:rgb(77, 77, 77);
@@ -42,10 +41,14 @@
     --color-text-unimportant: #c2c2c2;
     --color-text-unimportant-hover: #d3d2d2;
 
+    --color-button-hover: #1d1d27;
+
     --color-border: #666666;
+    --color-border-hover:rgb(99, 99, 99);
     --color-box-shadow: rgba(0,0,0,0.12);
     --color-box-shadow-input: rgba(11, 11, 12, 0.575);
 }
+
 
 /*##################################
 *   Placeholder Styles
