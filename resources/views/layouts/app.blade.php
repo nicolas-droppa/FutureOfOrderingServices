@@ -24,6 +24,7 @@
             <div class="settings-menu" id="settingsMenu">
                 <i class="fa-solid fa-gear"></i>
             </div>
+
             <div class="settings-menu-content hidden" id="settingsMenuContent">
                 <h3 class="setting-title">Settings</h3>
                 <div class="setting-item">
@@ -65,17 +66,37 @@
                 </div>
             </div>
 
+            
             <div class="profile">
                 <button id="profileButton" class="profile-button">
-                    <i class="fa-solid fa-user"></i> Hi, Guest
+                    <div class="profile-card">
+                        <div class="profile-icon">
+                            <i class="fa-solid fa-user"></i>
+                        </div>
+                        <div class="profile-info">
+                            <div class="profile-name">Guest User</div>
+                            <div class="profile-role">Client<div>
+                        </div>
+                    </div>
                 </button>
+            </div>
 
-                <div id="profileMenu" class="profile-menu hidden">
-                    <a href="/profile">Profile</a>
-                    <form method="POST" action="/logout">
-                        @csrf
-                        <button type="submit">Log-out</button>
-                    </form>
+            <div class="profile-menu-content hidden" id="profileMenuContent">
+                <h3 class="profile-title">Profile</h3>
+                <div class="profile-item">
+                    <div class="title">Actions</div>
+                    <div class="divider"></div>
+                    <div class="options">
+                        <div class="option" id="lightModeOption">
+                            <a href="/profile">My Profile</a>
+                        </div>
+                        <div class="option" id="darkModeOption">
+                            <form method="POST" action="/logout">
+                                @csrf
+                                <button type="submit">Logout</button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
 
