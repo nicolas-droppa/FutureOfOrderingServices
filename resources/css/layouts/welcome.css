@@ -11,6 +11,8 @@
     --color-primary: #7C58FB;
     --color-primary-hover: #6a48e4;
 
+    --color-button-hover: #ebebeb;
+
     --color-border: #5a5a5a;
     --color-border-hover:rgb(77, 77, 77);
     --color-box-shadow: rgba(0,0,0,0.12);
@@ -39,7 +41,10 @@
     --color-text-unimportant: #c2c2c2;
     --color-text-unimportant-hover: #d3d2d2;
 
+    --color-button-hover: #1d1d27;
+
     --color-border: #666666;
+    --color-border-hover:rgb(99, 99, 99);
     --color-box-shadow: rgba(0,0,0,0.12);
     --color-box-shadow-input: rgba(11, 11, 12, 0.575);
 }
@@ -122,7 +127,7 @@ main {
 }
 
 .welcome-container .welcome-buttons .button-primary:hover  {
-    background-color: #ebebeb;
+    background-color: var(--color-button-hover);
     border: .0625rem solid var(--color-border-hover);
     transition: background-color 0.2s ease, border 0.2s ease;
 }
