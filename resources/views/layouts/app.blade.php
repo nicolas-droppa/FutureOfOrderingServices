@@ -38,59 +38,13 @@
                 </div>
             </div>
 
-            <div class="settings-menu" id="settingsMenu">
-                <i class="lni lni-cog"></i>
-            </div>
-
-            <div class="menu-content hidden" id="settingsMenuContent">
-                <h3 class="menu-title">Settings</h3>
-                <div class="menu-item">
-                    <div class="title">Appearance</div>
-                    <div class="divider"></div>
-                    <div class="options">
-                        <div class="option" id="lightModeOption">
-                            <div class="background">
-                                <div class="foreground">
-                                    <div class="text">Aa</div>
-                                </div>
-                            </div>
-                            <span><i class="fa-solid fa-circle"></i>Light</span>
-                        </div>
-                        <div class="option" id="darkModeOption">
-                            <div class="background">
-                                <div class="foreground">
-                                    <div class="text">Aa</div>
-                                </div>
-                            </div>
-                            <span><i class="fa-solid fa-circle"></i>Dark</span>
-                        </div>
-                        <div class="option" id="systemModeOption">
-                            <div class="background-double">
-                                <div class="background-left">
-                                    <div class="foreground-left">
-                                        <div class="text-left">Aa</div>
-                                    </div>
-                                </div>
-                                <div class="background-right">
-                                    <div class="foreground-right">
-                                        <div class="text-left">Aa</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <span><i class="fa-solid fa-circle"></i>System</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            
             <div class="profile">
                 <button id="profileButton" class="profile-button">
                     <div class="profile-card">
-                        <div class="profile-icon">
+                        <div class="profile-icon" id="profileIcon">
                             <i class="fa-solid fa-user"></i>
                         </div>
-                        <div class="profile-info">
+                        <div class="profile-info" id="profileInfo">
                             <div class="profile-name">Guest User</div>
                             <div class="profile-role">Client<div>
                         </div>
@@ -101,16 +55,30 @@
             <div class="menu-content hidden" id="profileMenuContent">
                 <h3 class="menu-title">Profile</h3>
                 <div class="menu-item">
-                    <div class="title">Overview</div>
-                    <div class="divider"></div>
                     <div class="profile-overview">
-                        <div class="profile-name">Guest User</div>
-                        <div class="profile-large">Client</div>
-                        <div class="member-since">Member since: 10.12.2025</div>
+                        <div class="profile-column">
+                            <div class="profile-icon-large">
+                                <i class="fa-solid fa-user"></i>
+                            </div>
+                        </div>
+                        <div class="profile-column">
+                            <div class="profile-name">Guest User</div>
+                            <div class="profile-large">Client</div>
+                            <div class="member-since">Joined at 10.12.2025</div>
+                        </div>
                     </div>
-
-                    <div class="title">Actions</div>
-                    <div class="divider"></div>
+                    <div class="theme-toggle">
+                        <div class="theme-slider" id="themeSlider"></div>
+                        <button class="theme-btn" data-theme="light">
+                            <i class="fa-regular fa-sun"></i>
+                        </button>
+                        <button class="theme-btn" data-theme="dark">
+                            <i class="fa-regular fa-moon"></i>
+                        </button>
+                        <button class="theme-btn" data-theme="system">
+                            <i class="fa-regular fa-computer"></i>
+                        </button>
+                    </div>
                     <div class="options">
                         <div class="option" id="lightModeOption">
                             <a href="/profile">My Profile</a>

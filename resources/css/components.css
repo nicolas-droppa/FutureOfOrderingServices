@@ -165,6 +165,19 @@ select::placeholder {
     color: var(--color-text-unimportant-dark);
 }
 
+.profile-wanish {
+    opacity: 0;
+    transition: transform 0.45s ease-out;
+    transform: translateX(7.5rem);
+    display: none;
+}
+
+.profile-move-icon {
+    position: absolute;
+    transform: translateX(7.5rem);
+    transition: transform 0.45s ease-out;
+}
+
 /*##################################
 *   Notifications Menu Styles
 ##################################*/ 
@@ -184,7 +197,7 @@ select::placeholder {
 #notificationsMenuContent {
     position: absolute;
     top: -.3rem;
-    right: 16rem;
+    right: 12rem;
     background-color: var(--color-box-shadow-input);
     color: var(--card-text);
     min-width: 25rem;
@@ -192,6 +205,51 @@ select::placeholder {
     border-radius: 0.5rem;
     color: var(--color-text-unimportant-dark);
 }
+
+/*##################################
+*   Theme Selector Styles
+##################################*/ 
+.theme-toggle {
+    position: relative;
+    display: flex;
+    gap: 0;
+    width: 100%;
+    background: var(--color-primary);
+    padding: .15rem;
+    border-radius: .2rem;
+    border: .0625rem solid var(--color-border-hover);
+}
+
+.theme-btn {
+    flex: 1;
+    height: 1.8rem;
+    border: none;
+    background: transparent;
+    color: var(--color-bg-complement);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.theme-btn:hover {
+    color: var(--color-primary);
+}
+
+/* The sliding highlight */
+.theme-slider {
+    position: absolute;
+    top: .35rem;
+    left: .35rem;
+    width: calc((100% - .7rem) / 3);
+    height: calc(100% - .7rem);
+    background: var(--color-button-hover);
+    border-radius: 2rem;
+    transition: transform .35s cubic-bezier(.25, .8, .25, 1);
+    z-index: 1;
+}
+
 
 /*##################################
 *   Settings Menu Styles
@@ -209,18 +267,6 @@ select::placeholder {
     color: var(--color-primary-hover);
 }
 
-#settingsMenuContent {
-    position: absolute;
-    top: -.3rem;
-    right: 12rem;
-    background-color: var(--color-box-shadow-input);
-    color: var(--card-text);
-    min-width: 25rem;
-    z-index: -1;
-    border-radius: 0.5rem;
-    color: var(--color-text-unimportant-dark);
-}
-
 .menu-content .menu-title {
     padding: .75rem 1rem;
     background-color: var(--color-bg-complement);
@@ -234,125 +280,9 @@ select::placeholder {
     background-color: var(--color-bg-complement);
 }
 
-.menu-content .menu-item .title {
-    letter-spacing: .1rem;
-    pointer-events: none
-}
-
 .menu-content .menu-item:last-child {
     border-bottom-left-radius: .5rem;
     border-bottom-right-radius: .5rem;
-}
-
-.menu-content .divider {
-    width: 100%;
-    height: .0625rem;
-    margin: .25rem 0;
-    background-color: var(--color-text-unimportant-dark);
-    opacity: 0.5;
-    pointer-events: none
-}
-
-.menu-content .menu-item .options {
-    display: flex;
-    flex-direction: row;
-    gap: .5rem;
-    margin-top: 1rem;
-}
-
-.menu-content .menu-item .options span {
-    letter-spacing: normal;
-    display: flex;
-    align-items: center;
-}
-
-.menu-content .menu-item .options span i {
-    font-size: .5rem;
-    margin-right: .25rem;
-}
-
-.menu-content .menu-item .options .option {
-    width: 100%;
-}
-
-.menu-content .menu-item .options .option:hover {
-    color: var(--color-primary-hover)!important;
-    cursor: pointer;
-}
-
-.menu-content .menu-item .options .option .background,
-.menu-content .menu-item .options .option .background-double {
-    position: relative;
-    width: 100%;
-    height: 6rem;
-    background-color: var(--color-theme-background-light);
-    border-radius: 1rem;
-    outline: .1rem solid var(--color-border);
-}
-
-.menu-content .menu-item .options .option .background-double {
-    background-color: transparent;
-}
-
-.menu-content .menu-item .options #darkModeOption .background {
-    background-color: var(--color-theme-background-dark)
-}
-
-.menu-content .menu-item .options .option .background .foreground, 
-.menu-content .menu-item .options .option .background-double .background-left .foreground-left,
-.menu-content .menu-item .options .option .background-double .background-right .foreground-right {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    width: 80%;
-    height: 80%;
-    background-color: var(--color-theme-foreground-light);
-    padding: .5rem;
-    border-bottom-right-radius: 0;
-    font-weight: bold;
-}
-
-.menu-content .menu-item .options .option .background .foreground {
-    border-bottom-right-radius: 1rem;
-    color: var(--color-theme-accent-light);
-}
-
-.menu-content .menu-item .options #darkModeOption .background .foreground {
-    background-color: var(--color-theme-foreground-dark);
-    color: var(--color-theme-accent-dark);
-    border-bottom-right-radius: 1rem;
-}
-
-.menu-content .menu-item .options .option .background-double {
-    display: flex;
-    flex-direction: row;
-    color: var(--color-theme-accent-light);
-}
-
-.menu-content .menu-item .options .option .background-double .background-left,
-.menu-content .menu-item .options .option .background-double .background-right {
-    position: relative;
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    height: 100%;
-    background-color: var(--color-theme-background-light);
-    border-bottom-left-radius: 1rem;
-    border-top-left-radius: 1rem;
-}
-
-.menu-content .menu-item .options .option .background-double .background-right {
-    background-color: var(--color-theme-background-dark);
-    color: var(--color-theme-accent-dark);
-    border-bottom-right-radius: 1rem;
-    border-top-right-radius: 1rem;
-    border-bottom-left-radius: 0;
-    border-top-left-radius: 0;
-}
-
-.menu-content .menu-item .options .option .background-double .background-right .foreground-right {
-    background-color: var(--color-theme-foreground-dark);
-    border-bottom-right-radius: 1rem;
 }
 
 /*##################################

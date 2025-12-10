@@ -5,8 +5,10 @@ function initProfileMenu() {
 
     // Hide notifications menu when settings is opened
     const notificationsMenu = document.getElementById('notificationsMenu');
-    // Hide settings menu when settings is opened
-    const settingsMenu = document.getElementById('settingsMenu');
+
+    // Animate profile menu appearance
+    const profileInfo = document.getElementById('profileInfo');
+    const profileIcon = document.getElementById('profileIcon');
 
     if (!profileMenuBtn || !profileMenuContent) {
         console.warn('Profile menu elements not found');
@@ -18,8 +20,10 @@ function initProfileMenu() {
         profileMenuContent.classList.remove('hidden');
         settingsOverlay?.classList.remove('hidden');
 
+        profileInfo?.classList.add('profile-wanish');
+        profileIcon?.classList.add('profile-move-icon');
+
         // Hide other menus
-        settingsMenu?.classList.add('hidden');
         notificationsMenu?.classList.add('hidden');
     });
 
@@ -27,7 +31,9 @@ function initProfileMenu() {
         profileMenuContent.classList.remove('hidden');
         settingsOverlay?.classList.remove('hidden');
 
-        settingsMenu?.classList.add('hidden');
+        profileInfo?.classList.add('profile-wanish');
+        profileIcon?.classList.add('profile-move-icon');
+
         notificationsMenu?.classList.add('hidden');
     });
 
@@ -38,7 +44,9 @@ function initProfileMenu() {
                 profileMenuContent.classList.add('hidden');
                 settingsOverlay?.classList.add('hidden');
 
-                settingsMenu?.classList.remove('hidden');
+                profileInfo?.classList.remove('profile-wanish');
+                profileIcon?.classList.remove('profile-move-icon');
+
                 notificationsMenu?.classList.remove('hidden');
             }
         }, 100);
@@ -47,8 +55,10 @@ function initProfileMenu() {
     profileMenuContent.addEventListener('mouseleave', () => {
         profileMenuContent.classList.add('hidden');
         settingsOverlay?.classList.add('hidden');
+
+        profileInfo?.classList.remove('profile-wanish');
+        profileIcon?.classList.remove('profile-move-icon');
         
-        settingsMenu?.classList.remove('hidden');
         notificationsMenu?.classList.remove('hidden');
     });
 
@@ -58,7 +68,6 @@ function initProfileMenu() {
             profileMenuContent.classList.add('hidden');
             settingsOverlay.classList.add('hidden');
 
-            settingsMenu?.classList.remove('hidden');
             notificationsMenu?.classList.remove('hidden');
         });
     }
