@@ -10,6 +10,9 @@
     <!-- Material Icons (Google Fonts) -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
+    <!-- Lineicons CSS -->
+    <link rel="stylesheet" href="https://cdn.lineicons.com/3.0/lineicons.css">
+
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
@@ -21,13 +24,27 @@
         <a href="/" class="logo">BEX<span>O</span>RA</a>
 
         <div class="controls">
-            <div class="settings-menu" id="settingsMenu">
-                <i class="fa-solid fa-gear"></i>
+            <div class="notifications-menu" id="notificationsMenu">
+                <i class="lni lni-alarm"></i>
             </div>
 
-            <div class="settings-menu-content hidden" id="settingsMenuContent">
-                <h3 class="setting-title">Settings</h3>
-                <div class="setting-item">
+            <div class="menu-content hidden" id="notificationsMenuContent">
+                <h3 class="menu-title">Notifications</h3>
+                <div class="menu-item">
+                    <div class="notigication-list">
+                        <!-- Will be loaded by js -->
+                        You have no new notifications.
+                    </div>
+                </div>
+            </div>
+
+            <div class="settings-menu" id="settingsMenu">
+                <i class="lni lni-cog"></i>
+            </div>
+
+            <div class="menu-content hidden" id="settingsMenuContent">
+                <h3 class="menu-title">Settings</h3>
+                <div class="menu-item">
                     <div class="title">Appearance</div>
                     <div class="divider"></div>
                     <div class="options">
@@ -81,9 +98,9 @@
                 </button>
             </div>
 
-            <div class="profile-menu-content hidden" id="profileMenuContent">
-                <h3 class="profile-title">Profile</h3>
-                <div class="profile-item">
+            <div class="menu-content hidden" id="profileMenuContent">
+                <h3 class="menu-title">Profile</h3>
+                <div class="menu-item">
                     <div class="title">Actions</div>
                     <div class="divider"></div>
                     <div class="options">

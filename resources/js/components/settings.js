@@ -14,6 +14,7 @@ function initsettingsMenu() {
         return;
     }
     
+    // Hover icon to show menu
     settingsMenu.addEventListener('mouseenter', () => {
         console.log('Hovered settings menu!');
         settingsMenuContent.classList.remove('hidden');
@@ -25,6 +26,7 @@ function initsettingsMenu() {
         settingsOverlay?.classList.remove('hidden');
     });
     
+    // Hide menu when mouse leaves
     settingsMenu.addEventListener('mouseleave', () => {
         setTimeout(() => {
             if (!settingsMenuContent.matches(':hover')) {
