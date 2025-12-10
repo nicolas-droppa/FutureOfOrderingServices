@@ -5,6 +5,8 @@ function initsettingsMenu() {
     const settingsMenu = document.getElementById('settingsMenu');
     const settingsMenuContent = document.getElementById('settingsMenuContent');
     const settingsOverlay = document.getElementById('settingsOverlay');
+
+    // Hide notifications menu when settings is opened
     const notificationsMenu = document.getElementById('notificationsMenu');
 
     if (!settingsMenu || !settingsMenuContent) return;

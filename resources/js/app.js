@@ -1,5 +1,5 @@
 import './bootstrap';
-import './components/profileDropdown';
+import './components/profile.js';
 import './components/themeToggler';
 import './components/settings.js';
 import './components/notifications.js';

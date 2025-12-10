@@ -153,10 +153,17 @@ select::placeholder {
     color: var(--color-text-unimportant);
 }
 
-.profile .profile-button i {
-
+#profileMenuContent {
+    position: absolute;
+    top: -.3rem;
+    right: 0rem;
+    background-color: var(--color-box-shadow-input);
+    color: var(--card-text);
+    min-width: 25rem;
+    z-index: -1;
+    border-radius: 0.5rem;
+    color: var(--color-text-unimportant-dark);
 }
-
 
 /*##################################
 *   Notifications Menu Styles

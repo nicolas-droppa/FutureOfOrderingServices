@@ -101,6 +101,14 @@
             <div class="menu-content hidden" id="profileMenuContent">
                 <h3 class="menu-title">Profile</h3>
                 <div class="menu-item">
+                    <div class="title">Overview</div>
+                    <div class="divider"></div>
+                    <div class="profile-overview">
+                        <div class="profile-name">Guest User</div>
+                        <div class="profile-large">Client</div>
+                        <div class="member-since">Member since: 10.12.2025</div>
+                    </div>
+
                     <div class="title">Actions</div>
                     <div class="divider"></div>
                     <div class="options">
