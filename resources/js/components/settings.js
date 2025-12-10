@@ -5,94 +5,65 @@ function initsettingsMenu() {
     const settingsMenu = document.getElementById('settingsMenu');
     const settingsMenuContent = document.getElementById('settingsMenuContent');
     const settingsOverlay = document.getElementById('settingsOverlay');
+    const notificationsMenu = document.getElementById('notificationsMenu');
 
-    console.log('settingsMenu:', settingsMenu);
-    console.log('settingsMenuContent:', settingsMenuContent);
-    
-    if (!settingsMenu || !settingsMenuContent) {
-        console.warn('Settings menu elements not found');
-        return;
+    if (!settingsMenu || !settingsMenuContent) return;
+
+    let isHoveringButton = false;
+    let isHoveringContent = false;
+
+    function openMenu() {
+        settingsMenuContent.classList.remove('hidden');
+        settingsOverlay?.classList.remove('hidden');
+        notificationsMenu?.classList.add('hidden');
     }
-    
-    // Hover icon to show menu
-    settingsMenu.addEventListener('mouseenter', () => {
-        console.log('Hovered settings menu!');
-        settingsMenuContent.classList.remove('hidden');
-        settingsOverlay?.classList.remove('hidden');
-    });
-    
-    settingsMenuContent.addEventListener('mouseenter', () => {
-        settingsMenuContent.classList.remove('hidden');
-        settingsOverlay?.classList.remove('hidden');
-    });
-    
-    // Hide menu when mouse leaves
-    settingsMenu.addEventListener('mouseleave', () => {
-        setTimeout(() => {
-            if (!settingsMenuContent.matches(':hover')) {
-                settingsMenuContent.classList.add('hidden');
-                settingsOverlay?.classList.add('hidden');
-            }
-        }, 100);
-    });
-    
-    settingsMenuContent.addEventListener('mouseleave', () => {
-        console.log('Left settings menu content');
+
+    function closeMenu() {
         settingsMenuContent.classList.add('hidden');
         settingsOverlay?.classList.add('hidden');
-    });
-
-    // Close when clicking overlay
-    if (settingsOverlay) {
-        settingsOverlay.addEventListener('click', () => {
-            settingsMenuContent.classList.add('hidden');
-            settingsOverlay.classList.add('hidden');
-        });
+        notificationsMenu?.classList.remove('hidden');
     }
 
-    // Theme option buttons
+    // Button hover
+    settingsMenu.addEventListener('mouseenter', () => {
+        isHoveringButton = true;
+        openMenu();
+    });
+    settingsMenu.addEventListener('mouseleave', () => {
+        isHoveringButton = false;
+        if (!isHoveringContent) closeMenu();
+    });
+
+    // Content hover
+    settingsMenuContent.addEventListener('mouseenter', () => {
+        isHoveringContent = true;
+        openMenu();
+    });
+    settingsMenuContent.addEventListener('mouseleave', () => {
+        isHoveringContent = false;
+        if (!isHoveringButton) closeMenu();
+    });
+
+    // Close on overlay click
+    settingsOverlay?.addEventListener('click', closeMenu);
+
+    // Theme buttons
     const lightOpt = document.getElementById('lightModeOption');
     const darkOpt = document.getElementById('darkModeOption');
     const systemOpt = document.getElementById('systemModeOption');
 
-    if (lightOpt) {
-        lightOpt.addEventListener('click', () => {
-            setTheme('light');
-            updateActiveVisual();
-        });
-    }
-    if (darkOpt) {
-        darkOpt.addEventListener('click', () => {
-            setTheme('dark');
-            updateActiveVisual();
-        });
-    }
-    if (systemOpt) {
-        systemOpt.addEventListener('click', () => {
-            setTheme('system');
-            updateActiveVisual();
-        });
-    }
-
     function updateActiveVisual() {
         const pref = localStorage.getItem(DARK_MODE_STORAGE_KEY);
+        [lightOpt, darkOpt, systemOpt].forEach(el => el?.classList.remove('toggled'));
 
-        // clear all
-        [lightOpt, darkOpt, systemOpt].forEach((el) => { if (el) el.classList.remove('toggled'); });
-
-        if (pref === 'enabled') {
-            darkOpt?.classList.add('toggled');
-            return;
-        }
-
-        if (pref === 'disabled') {
-            lightOpt?.classList.add('toggled');
-            return;
-        }
-
-        // no stored pref -> use system
-        systemOpt?.classList.add('toggled');
+        if (pref === 'enabled') darkOpt?.classList.add('toggled');
+        else if (pref === 'disabled') lightOpt?.classList.add('toggled');
+        else systemOpt?.classList.add('toggled');
     }
+
+    lightOpt?.addEventListener('click', () => { setTheme('light'); updateActiveVisual(); });
+    darkOpt?.addEventListener('click', () => { setTheme('dark'); updateActiveVisual(); });
+    systemOpt?.addEventListener('click', () => { setTheme('system'); updateActiveVisual(); });
 
     updateActiveVisual();
 }

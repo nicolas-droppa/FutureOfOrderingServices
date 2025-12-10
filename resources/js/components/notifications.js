@@ -8,39 +8,41 @@ function initNotificationsMenu() {
         return;
     }
 
-    // Hover icon to show menu
-    notificationsMenu.addEventListener('mouseenter', () => {
+    let isHoveringButton = false;
+    let isHoveringContent = false;
+
+    function openMenu() {
         notificationsMenuContent.classList.remove('hidden');
         settingsOverlay?.classList.remove('hidden');
-    });
+    }
 
-    notificationsMenuContent.addEventListener('mouseenter', () => {
-        notificationsMenuContent.classList.remove('hidden');
-        settingsOverlay?.classList.remove('hidden');
-    });
-
-    // Hide menu when mouse leaves
-    notificationsMenu.addEventListener('mouseleave', () => {
-        setTimeout(() => {
-            if (!notificationsMenuContent.matches(':hover')) {
-                notificationsMenuContent.classList.add('hidden');
-                settingsOverlay?.classList.add('hidden');
-            }
-        }, 100);
-    });
-
-    notificationsMenuContent.addEventListener('mouseleave', () => {
+    function closeMenu() {
         notificationsMenuContent.classList.add('hidden');
         settingsOverlay?.classList.add('hidden');
+    }
+
+    // Hover icon
+    notificationsMenu.addEventListener('mouseenter', () => {
+        isHoveringButton = true;
+        openMenu();
+    });
+    notificationsMenu.addEventListener('mouseleave', () => {
+        isHoveringButton = false;
+        if (!isHoveringContent) closeMenu();
     });
 
-    // Close when clicking overlay
-    if (settingsOverlay) {
-        settingsOverlay.addEventListener('click', () => {
-            notificationsMenuContent.classList.add('hidden');
-            settingsOverlay.classList.add('hidden');
-        });
-    }
+    // Hover content
+    notificationsMenuContent.addEventListener('mouseenter', () => {
+        isHoveringContent = true;
+        openMenu();
+    });
+    notificationsMenuContent.addEventListener('mouseleave', () => {
+        isHoveringContent = false;
+        if (!isHoveringButton) closeMenu();
+    });
+
+    // Close on overlay click
+    settingsOverlay?.addEventListener('click', closeMenu);
 }
 
 if (document.readyState === 'loading') {

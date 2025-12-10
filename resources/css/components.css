@@ -101,6 +101,7 @@ select::placeholder {
     align-items: center;
     gap: 2.5rem;
     flex-shrink: 0;
+    z-index: 0;
 }
 
 /*##################################
@@ -228,6 +229,7 @@ select::placeholder {
 
 .menu-content .menu-item .title {
     letter-spacing: .1rem;
+    pointer-events: none
 }
 
 .menu-content .menu-item:last-child {
@@ -241,6 +243,7 @@ select::placeholder {
     margin: .25rem 0;
     background-color: var(--color-text-unimportant-dark);
     opacity: 0.5;
+    pointer-events: none
 }
 
 .menu-content .menu-item .options {
