@@ -1,105 +1,61 @@
 import { DARK_MODE_STORAGE_KEY } from './constants.js';
 
 const body = document.body;
-const button = document.getElementById('themeToggle');
+const buttons = document.querySelectorAll('.theme-btn');
+const slider = document.getElementById('themeSlider');
 
-function applyDarkModeFromStorage() {
-    const stored = localStorage.getItem(DARK_MODE_STORAGE_KEY);
-    if (stored === 'enabled') {
-        body.classList.add('theme-dark');
-        console.log('[themeToggler] applied theme from storage: enabled');
-        return true;
-    }
-
-    if (stored === 'disabled') {
-        body.classList.remove('theme-dark');
-        console.log('[themeToggler] applied theme from storage: disabled');
-        return false;
-    }
-
-    // If no explicit setting, follow OS preference
-    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-    if (prefersDark) {
-        body.classList.add('theme-dark');
-        console.log('[themeToggler] no stored pref — following OS prefers-color-scheme: dark');
-        return true;
-    }
-
-    body.classList.remove('theme-dark');
-    console.log('[themeToggler] no stored pref — using light theme');
-    return false;
-}
-
-// apply on load
-const isDarkOnLoad = applyDarkModeFromStorage();
-
-function updateToggleButtonContent(isDark) {
-    if (!button) return;
-    // Use Font Awesome icons; set aria-label for accessibility
-    if (isDark) {
-        button.innerHTML = `
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.25" stroke="currentColor" class="size-8" aria-hidden="true">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" />
-            </svg>
-        `;
-        button.setAttribute('aria-label', 'Switch to light theme');
-    } else {
-        button.innerHTML = `
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.25" stroke="currentColor" class="size-6" aria-hidden="true">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z" />
-            </svg>
-        `;
-        button.setAttribute('aria-label', 'Switch to dark theme');
-    }
-}
-
-// initialize button content
-updateToggleButtonContent(isDarkOnLoad);
-
-if (button) {
-    button.addEventListener('click', () => {
-        const isNowDark = body.classList.toggle('theme-dark');
-        localStorage.setItem(DARK_MODE_STORAGE_KEY, isNowDark ? 'enabled' : 'disabled');
-        console.log(`[themeToggler] toggle clicked — theme-dark ${isNowDark ? 'enabled' : 'disabled'}`);
-        updateToggleButtonContent(isNowDark);
-    });
-} else {
-    console.warn('[themeToggler] #themeToggle not found');
-}
-
-/**
- * Programmatically set theme from other UI (light | dark | system)
- * @param {'light'|'dark'|'system'} themeName
- */
-export function setTheme(themeName) {
-    if (!themeName) return;
-    if (themeName === 'light') {
+function applyTheme(theme) {
+    if (theme === 'light') {
         body.classList.remove('theme-dark');
         localStorage.setItem(DARK_MODE_STORAGE_KEY, 'disabled');
-        updateToggleButtonContent(false);
-        console.log('[themeToggler] theme set to light');
         return;
     }
 
-    if (themeName === 'dark') {
+    if (theme === 'dark') {
         body.classList.add('theme-dark');
         localStorage.setItem(DARK_MODE_STORAGE_KEY, 'enabled');
-        updateToggleButtonContent(true);
-        console.log('[themeToggler] theme set to dark');
         return;
     }
 
-    if (themeName === 'system') {
+    if (theme === 'system') {
         localStorage.removeItem(DARK_MODE_STORAGE_KEY);
-        const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-        if (prefersDark) {
-            body.classList.add('theme-dark');
-            updateToggleButtonContent(true);
-        } else {
-            body.classList.remove('theme-dark');
-            updateToggleButtonContent(false);
-        }
-        console.log('[themeToggler] theme set to system (cleared explicit preference)');
-        return;
+
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (prefersDark) body.classList.add('theme-dark');
+        else body.classList.remove('theme-dark');
     }
 }
+
+function moveSliderTo(theme) {
+    const index = { light: 0, dark: 1, system: 2 }[theme] ?? 0;
+    slider.style.transform = `translateX(${index * 100}%)`;
+}
+
+function loadInitialTheme() {
+    const stored = localStorage.getItem(DARK_MODE_STORAGE_KEY);
+
+    if (stored === 'enabled') {
+        applyTheme('dark');
+        moveSliderTo('dark');
+        return;
+    }
+    if (stored === 'disabled') {
+        applyTheme('light');
+        moveSliderTo('light');
+        return;
+    }
+
+    // default -> use system
+    applyTheme('system');
+    moveSliderTo('system');
+}
+
+loadInitialTheme();
+
+buttons.forEach(button => {
+    button.addEventListener('click', () => {
+        const theme = button.dataset.theme;
+        applyTheme(theme);
+        moveSliderTo(theme);
+    });
+});

@@ -1,15 +1,21 @@
 :root {
     --color-bg: #F8F8F8;
-    --color-bg-complement: #F6F6F6;
+    --color-bg-complement: #f0f0f0;
     --color-text: #080808;
     --color-text-white: #f3f3f3;
-    --color-text-unimportant: #ebebeb;
-    --color-text-unimportant-hover: #f8f8f8;
+    --color-text-unimportant: rgb(126, 126, 126);
+    --color-text-unimportant-hover: rgb(85, 85, 85);
     --color-text-unimportant-dark: #646464;
     --color-text-unimportant-dark-hover: #444444;
 
+    --color-secondary-button: #e9e9e9;
+    --color-secondary-button-hover: #d3d3d3;
+
     --color-primary: #7C58FB;
     --color-primary-hover: #6a48e4;
+
+    --color-red: #d43f3f;
+    --color-red-hover: rgb(165, 45, 45);
 
     --color-button-hover: #ebebeb;
 
@@ -19,6 +25,8 @@
     --color-box-shadow-input: rgba(161, 171, 189, 0.3);
 
     --color-placeholder: rgba(0,0,0,0.45);
+
+    --color-divider: #dcdcdc;
 
     --color-theme-background-light: #F6F6F6;
     --color-theme-foreground-light: #c2c2c2;
@@ -35,13 +43,22 @@
 
 .theme-dark {
     --color-bg: #18181f;
-    --color-bg-complement: #1b1b24;
+    --color-bg-complement: #15151b;
     --color-text: #f0f0f0;
-    --color-text-white: #131313;
+    --color-text-black: #131313;
     --color-text-unimportant: #c2c2c2;
     --color-text-unimportant-hover: #d3d2d2;
+    --color-text-unimportant-dark: #646464;
+    --color-text-unimportant-dark-hover: #444444;
 
     --color-button-hover: #1d1d27;
+
+    --color-secondary-button: #e9e9e9;
+    --color-secondary-button-hover: #d3d3d3;
+
+    --color-placeholder: rgba(107, 107, 107, 0.699);
+
+    --color-divider: #262530;
 
     --color-border: #666666;
     --color-border-hover:rgb(99, 99, 99);
@@ -126,7 +143,7 @@ select::placeholder {
     width: 100%;
     height: 100%;
     background: transparent;
-    color: var(--color-text-unimportant);
+    color: var(--color-text);
     font-size: var(--font-size-small);
     transition: color 0.2s ease;
 }
@@ -153,10 +170,100 @@ select::placeholder {
     color: var(--color-text-unimportant);
 }
 
-.profile .profile-button i {
-
+#profileMenuContent {
+    position: absolute;
+    top: -0.1rem;
+    right: 0rem;
+    background-color: var(--color-box-shadow-input);
+    color: var(--card-text);
+    min-width: 25rem;
+    z-index: -1;
+    border-radius: 0.5rem;
+    color: var(--color-text-unimportant-dark);
 }
 
+.profile-wanish {
+    opacity: 0;
+    transition: transform 0.45s ease-out;
+    transform: translateX(7.5rem);
+    display: none;
+}
+
+.profile-move-icon {
+    position: absolute;
+    transform: translateX(7.5rem);
+    transition: transform 0.45s ease-out;
+}
+
+.profile-overview {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    color: var(--color-text);
+}
+
+.profile-column {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-overview .profile-column .profile-icon-large {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    font-size: 1.25rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: .0625rem solid var(--color-primary);
+    background-color: var(--color-bg-complement);
+}
+
+.profile-overview .profile-column .profile-name {
+    padding-top: .25rem;
+    font-size: var(--font-size-base);
+}
+
+.profile-overview .profile-column .profile-email {
+    margin-bottom: .25rem;
+    color: var(--color-text-unimportant)!important;
+    font-size: var(--font-size-small);
+}
+
+.user-status {
+    margin-top: .5rem;
+    margin-bottom: .5rem;
+    display: flex;
+    gap: .5rem;
+    align-items: center;
+    font-size: var(--font-size-small);
+    justify-content: space-between;
+}
+
+.divider {
+    height: .0625rem;
+    background-color: var(--color-divider);
+    margin: .5rem 0;
+}
+
+.options .option {
+    padding: .75rem 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    color: var(--color-text);
+    font-size: var(--font-size-small);
+}
+
+.options {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+
+.options .option:hover {
+    background-color: var(--color-bg-complement);
+}
 
 /*##################################
 *   Notifications Menu Styles
@@ -176,14 +283,58 @@ select::placeholder {
 
 #notificationsMenuContent {
     position: absolute;
-    top: -.3rem;
-    right: 16rem;
+    top: -.1rem;
+    right: 12rem;
     background-color: var(--color-box-shadow-input);
     color: var(--card-text);
     min-width: 25rem;
     z-index: -1;
     border-radius: 0.5rem;
     color: var(--color-text-unimportant-dark);
+}
+
+/*##################################
+*   Theme Selector Styles
+##################################*/ 
+.theme-toggle {
+    position: relative;
+    display: flex;
+    gap: 0;
+    width: 100%;
+    background: var(--color-bg-complement);
+    border-radius: .2rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.theme-btn {
+    flex: 1;
+    height: 2.5rem;
+    border: none;
+    background: transparent;
+    color: var(--color-text);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.theme-btn:hover {
+    color: var(--color-primary);
+}
+
+.theme-slider {
+    position: absolute;
+    left: .1rem;
+    width: calc((100% - .15rem) / 3);
+    height: calc(100%);
+    background: var(--color-primary-hover);
+    border-radius: .1rem;
+    border: .0625rem solid var(--color-primary-hover);
+    box-shadow: 0px 0px 6px 2px var(--color-box-shadow);
+    transition: transform .35s cubic-bezier(.25, .8, .25, 1);
+    z-index: 1;
 }
 
 /*##################################
@@ -202,21 +353,9 @@ select::placeholder {
     color: var(--color-primary-hover);
 }
 
-#settingsMenuContent {
-    position: absolute;
-    top: -.3rem;
-    right: 12rem;
-    background-color: var(--color-box-shadow-input);
-    color: var(--card-text);
-    min-width: 25rem;
-    z-index: -1;
-    border-radius: 0.5rem;
-    color: var(--color-text-unimportant-dark);
-}
-
 .menu-content .menu-title {
     padding: .75rem 1rem;
-    background-color: var(--color-bg-complement);
+    background-color: var(--color-bg);
     border-top-left-radius: .5rem;
     letter-spacing: .1rem;
 }
@@ -224,128 +363,12 @@ select::placeholder {
 .menu-content .menu-item {
     padding: 1.25rem 1.25rem 2rem 1.25rem;
     margin-top: .25rem;
-    background-color: var(--color-bg-complement);
-}
-
-.menu-content .menu-item .title {
-    letter-spacing: .1rem;
-    pointer-events: none
+    background-color: var(--color-bg);
 }
 
 .menu-content .menu-item:last-child {
     border-bottom-left-radius: .5rem;
     border-bottom-right-radius: .5rem;
-}
-
-.menu-content .divider {
-    width: 100%;
-    height: .0625rem;
-    margin: .25rem 0;
-    background-color: var(--color-text-unimportant-dark);
-    opacity: 0.5;
-    pointer-events: none
-}
-
-.menu-content .menu-item .options {
-    display: flex;
-    flex-direction: row;
-    gap: .5rem;
-    margin-top: 1rem;
-}
-
-.menu-content .menu-item .options span {
-    letter-spacing: normal;
-    display: flex;
-    align-items: center;
-}
-
-.menu-content .menu-item .options span i {
-    font-size: .5rem;
-    margin-right: .25rem;
-}
-
-.menu-content .menu-item .options .option {
-    width: 100%;
-}
-
-.menu-content .menu-item .options .option:hover {
-    color: var(--color-primary-hover)!important;
-    cursor: pointer;
-}
-
-.menu-content .menu-item .options .option .background,
-.menu-content .menu-item .options .option .background-double {
-    position: relative;
-    width: 100%;
-    height: 6rem;
-    background-color: var(--color-theme-background-light);
-    border-radius: 1rem;
-    outline: .1rem solid var(--color-border);
-}
-
-.menu-content .menu-item .options .option .background-double {
-    background-color: transparent;
-}
-
-.menu-content .menu-item .options #darkModeOption .background {
-    background-color: var(--color-theme-background-dark)
-}
-
-.menu-content .menu-item .options .option .background .foreground, 
-.menu-content .menu-item .options .option .background-double .background-left .foreground-left,
-.menu-content .menu-item .options .option .background-double .background-right .foreground-right {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    width: 80%;
-    height: 80%;
-    background-color: var(--color-theme-foreground-light);
-    padding: .5rem;
-    border-bottom-right-radius: 0;
-    font-weight: bold;
-}
-
-.menu-content .menu-item .options .option .background .foreground {
-    border-bottom-right-radius: 1rem;
-    color: var(--color-theme-accent-light);
-}
-
-.menu-content .menu-item .options #darkModeOption .background .foreground {
-    background-color: var(--color-theme-foreground-dark);
-    color: var(--color-theme-accent-dark);
-    border-bottom-right-radius: 1rem;
-}
-
-.menu-content .menu-item .options .option .background-double {
-    display: flex;
-    flex-direction: row;
-    color: var(--color-theme-accent-light);
-}
-
-.menu-content .menu-item .options .option .background-double .background-left,
-.menu-content .menu-item .options .option .background-double .background-right {
-    position: relative;
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    height: 100%;
-    background-color: var(--color-theme-background-light);
-    border-bottom-left-radius: 1rem;
-    border-top-left-radius: 1rem;
-}
-
-.menu-content .menu-item .options .option .background-double .background-right {
-    background-color: var(--color-theme-background-dark);
-    color: var(--color-theme-accent-dark);
-    border-bottom-right-radius: 1rem;
-    border-top-right-radius: 1rem;
-    border-bottom-left-radius: 0;
-    border-top-left-radius: 0;
-}
-
-.menu-content .menu-item .options .option .background-double .background-right .foreground-right {
-    background-color: var(--color-theme-foreground-dark);
-    border-bottom-right-radius: 1rem;
 }
 
 /*##################################

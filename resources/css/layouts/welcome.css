@@ -1,12 +1,15 @@
 :root {
     --color-bg: #F8F8F8;
-    --color-bg-complement: #F6F6F6;
+    --color-bg-complement: #f0f0f0;
     --color-text: #080808;
     --color-text-white: #f3f3f3;
-    --color-text-unimportant: #ebebeb;
-    --color-text-unimportant-hover: #f8f8f8;
+    --color-text-unimportant: rgb(126, 126, 126);
+    --color-text-unimportant-hover: rgb(85, 85, 85);
     --color-text-unimportant-dark: #646464;
     --color-text-unimportant-dark-hover: #444444;
+
+    --color-secondary-button: #e9e9e9;
+    --color-secondary-button-hover: #d3d3d3;
 
     --color-primary: #7C58FB;
     --color-primary-hover: #6a48e4;
@@ -35,11 +38,16 @@
 
 .theme-dark {
     --color-bg: #18181f;
-    --color-bg-complement: #1b1b24;
+    --color-bg-complement: #15151b;
     --color-text: #f0f0f0;
-    --color-text-white: #131313;
+    --color-text-black: #131313;
     --color-text-unimportant: #c2c2c2;
     --color-text-unimportant-hover: #d3d2d2;
+    --color-text-unimportant-dark: #646464;
+    --color-text-unimportant-dark-hover: #444444;
+
+    --color-secondary-button: #e9e9e9;
+    --color-secondary-button-hover: #d3d3d3;
 
     --color-button-hover: #1d1d27;
 
@@ -123,7 +131,6 @@ main {
 .welcome-container .welcome-buttons .button-secondary {
     background-color: var(--color-primary);
     border: .0625rem solid var(--color-primary);
-    color: var(--color-text-white);
 }
 
 .welcome-container .welcome-buttons .button-primary:hover  {
@@ -138,9 +145,14 @@ main {
     color: var(--color-text-white); 
 }
 
+.welcome-container .welcome-buttons .button-secondary .description,
+.welcome-container .welcome-buttons .button-secondary .title {
+    color: var(--color-secondary-button);
+}
+
 .welcome-container .welcome-buttons .button-secondary:hover .description,
 .welcome-container .welcome-buttons .button-secondary:hover .title {
-    color: var(--color-text-unimportant-hover);
+    color: var(--color-secondary-button-hover);
 }
 
 .welcome-container .welcome-buttons .button-primary:hover .title,

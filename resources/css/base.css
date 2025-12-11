@@ -1,18 +1,34 @@
 :root {
     --color-bg: #F8F8F8;
-    --color-bg-complement: #F6F6F6;
+    --color-bg-complement: #f0f0f0;
     --color-text: #080808;
-    --color-text-white: #f8f8f8;
-    --color-text-unimportant: #e6e6e6;
+    --color-text-white: #f3f3f3;
+    --color-text-unimportant: rgb(126, 126, 126);
+    --color-text-unimportant-hover: rgb(85, 85, 85);
+    --color-text-unimportant-dark: #646464;
+    --color-text-unimportant-dark-hover: #444444;
+
+    --color-secondary-button: #e9e9e9;
+    --color-secondary-button-hover: #d3d3d3;
 
     --color-primary: #7C58FB;
     --color-primary-hover: #6a48e4;
 
+    --color-button-hover: #ebebeb;
+
     --color-border: #5a5a5a;
+    --color-border-hover:rgb(77, 77, 77);
     --color-box-shadow: rgba(0,0,0,0.12);
     --color-box-shadow-input: rgba(161, 171, 189, 0.3);
 
     --color-placeholder: rgba(0,0,0,0.45);
+
+    --color-theme-background-light: #F6F6F6;
+    --color-theme-foreground-light: #c2c2c2;
+    --color-theme-accent-light: #1b1b1b;
+    --color-theme-background-dark: #1a1a20;
+    --color-theme-foreground-dark: #28272c;
+    --color-theme-accent-dark: #d8d8d8;
 
     --font-size-logo: 1.5rem;
     --font-size-large: 1.25rem;
@@ -22,14 +38,23 @@
 
 .theme-dark {
     --color-bg: #18181f;
-    --color-bg-complement: #1b1b24;
+    --color-bg-complement: #15151b;
     --color-text: #f0f0f0;
+    --color-text-black: #131313;
+    --color-text-unimportant: #c2c2c2;
+    --color-text-unimportant-hover: #d3d2d2;
+    --color-text-unimportant-dark: #646464;
+    --color-text-unimportant-dark-hover: #444444;
+
+    --color-button-hover: #1d1d27;
+
+    --color-secondary-button: #e9e9e9;
+    --color-secondary-button-hover: #d3d3d3;
 
     --color-border: #666666;
+    --color-border-hover:rgb(99, 99, 99);
     --color-box-shadow: rgba(0,0,0,0.12);
-    --color-box-shadow-input: rgba(7, 7, 7, 0.521);
-
-    --color-placeholder: rgba(248, 248, 248, 0.45);
+    --color-box-shadow-input: rgba(11, 11, 12, 0.575);
 }
 
 @font-face {
