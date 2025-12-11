@@ -1,15 +1,21 @@
 :root {
     --color-bg: #F8F8F8;
-    --color-bg-complement: #F6F6F6;
+    --color-bg-complement: #f0f0f0;
     --color-text: #080808;
     --color-text-white: #f3f3f3;
-    --color-text-unimportant: #ebebeb;
-    --color-text-unimportant-hover: #f8f8f8;
+    --color-text-unimportant: rgb(126, 126, 126);
+    --color-text-unimportant-hover: rgb(85, 85, 85);
     --color-text-unimportant-dark: #646464;
     --color-text-unimportant-dark-hover: #444444;
 
+    --color-secondary-button: #e9e9e9;
+    --color-secondary-button-hover: #d3d3d3;
+
     --color-primary: #7C58FB;
     --color-primary-hover: #6a48e4;
+
+    --color-red: #d43f3f;
+    --color-red-hover: rgb(165, 45, 45);
 
     --color-button-hover: #ebebeb;
 
@@ -19,6 +25,8 @@
     --color-box-shadow-input: rgba(161, 171, 189, 0.3);
 
     --color-placeholder: rgba(0,0,0,0.45);
+
+    --color-divider: #dcdcdc;
 
     --color-theme-background-light: #F6F6F6;
     --color-theme-foreground-light: #c2c2c2;
@@ -35,13 +43,22 @@
 
 .theme-dark {
     --color-bg: #18181f;
-    --color-bg-complement: #1b1b24;
+    --color-bg-complement: #15151b;
     --color-text: #f0f0f0;
-    --color-text-white: #131313;
+    --color-text-black: #131313;
     --color-text-unimportant: #c2c2c2;
     --color-text-unimportant-hover: #d3d2d2;
+    --color-text-unimportant-dark: #646464;
+    --color-text-unimportant-dark-hover: #444444;
 
     --color-button-hover: #1d1d27;
+
+    --color-secondary-button: #e9e9e9;
+    --color-secondary-button-hover: #d3d3d3;
+
+    --color-placeholder: rgba(107, 107, 107, 0.699);
+
+    --color-divider: #262530;
 
     --color-border: #666666;
     --color-border-hover:rgb(99, 99, 99);
@@ -126,7 +143,7 @@ select::placeholder {
     width: 100%;
     height: 100%;
     background: transparent;
-    color: var(--color-text-unimportant);
+    color: var(--color-text);
     font-size: var(--font-size-small);
     transition: color 0.2s ease;
 }
@@ -155,7 +172,7 @@ select::placeholder {
 
 #profileMenuContent {
     position: absolute;
-    top: -.3rem;
+    top: -0.1rem;
     right: 0rem;
     background-color: var(--color-box-shadow-input);
     color: var(--card-text);
@@ -178,6 +195,76 @@ select::placeholder {
     transition: transform 0.45s ease-out;
 }
 
+.profile-overview {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    color: var(--color-text);
+}
+
+.profile-column {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-overview .profile-column .profile-icon-large {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    font-size: 1.25rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: .0625rem solid var(--color-primary);
+    background-color: var(--color-bg-complement);
+}
+
+.profile-overview .profile-column .profile-name {
+    padding-top: .25rem;
+    font-size: var(--font-size-base);
+}
+
+.profile-overview .profile-column .profile-email {
+    margin-bottom: .25rem;
+    color: var(--color-text-unimportant)!important;
+    font-size: var(--font-size-small);
+}
+
+.user-status {
+    margin-top: .5rem;
+    margin-bottom: .5rem;
+    display: flex;
+    gap: .5rem;
+    align-items: center;
+    font-size: var(--font-size-small);
+    justify-content: space-between;
+}
+
+.divider {
+    height: .0625rem;
+    background-color: var(--color-divider);
+    margin: .5rem 0;
+}
+
+.options .option {
+    padding: .75rem 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    color: var(--color-text);
+    font-size: var(--font-size-small);
+}
+
+.options {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+
+.options .option:hover {
+    background-color: var(--color-bg-complement);
+}
+
 /*##################################
 *   Notifications Menu Styles
 ##################################*/ 
@@ -196,7 +283,7 @@ select::placeholder {
 
 #notificationsMenuContent {
     position: absolute;
-    top: -.3rem;
+    top: -.1rem;
     right: 12rem;
     background-color: var(--color-box-shadow-input);
     color: var(--card-text);
@@ -214,18 +301,18 @@ select::placeholder {
     display: flex;
     gap: 0;
     width: 100%;
-    background: var(--color-primary);
-    padding: .15rem;
+    background: var(--color-bg-complement);
     border-radius: .2rem;
-    border: .0625rem solid var(--color-border-hover);
+    margin-top: 1rem;
+    margin-bottom: 1rem;
 }
 
 .theme-btn {
     flex: 1;
-    height: 1.8rem;
+    height: 2.5rem;
     border: none;
     background: transparent;
-    color: var(--color-bg-complement);
+    color: var(--color-text);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -237,19 +324,18 @@ select::placeholder {
     color: var(--color-primary);
 }
 
-/* The sliding highlight */
 .theme-slider {
     position: absolute;
-    top: .35rem;
-    left: .35rem;
-    width: calc((100% - .7rem) / 3);
-    height: calc(100% - .7rem);
-    background: var(--color-button-hover);
-    border-radius: 2rem;
+    left: .1rem;
+    width: calc((100% - .15rem) / 3);
+    height: calc(100%);
+    background: var(--color-primary-hover);
+    border-radius: .1rem;
+    border: .0625rem solid var(--color-primary-hover);
+    box-shadow: 0px 0px 6px 2px var(--color-box-shadow);
     transition: transform .35s cubic-bezier(.25, .8, .25, 1);
     z-index: 1;
 }
-
 
 /*##################################
 *   Settings Menu Styles
@@ -269,7 +355,7 @@ select::placeholder {
 
 .menu-content .menu-title {
     padding: .75rem 1rem;
-    background-color: var(--color-bg-complement);
+    background-color: var(--color-bg);
     border-top-left-radius: .5rem;
     letter-spacing: .1rem;
 }
@@ -277,7 +363,7 @@ select::placeholder {
 .menu-content .menu-item {
     padding: 1.25rem 1.25rem 2rem 1.25rem;
     margin-top: .25rem;
-    background-color: var(--color-bg-complement);
+    background-color: var(--color-bg);
 }
 
 .menu-content .menu-item:last-child {

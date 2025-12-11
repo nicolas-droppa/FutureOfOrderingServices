@@ -52,7 +52,7 @@
                 </button>
             </div>
 
-            <div class="menu-content hidden" id="profileMenuContent">
+            <div class="menu-content" id="profileMenuContent">
                 <h3 class="menu-title">Profile</h3>
                 <div class="menu-item">
                     <div class="profile-overview">
@@ -63,10 +63,14 @@
                         </div>
                         <div class="profile-column">
                             <div class="profile-name">Guest User</div>
-                            <div class="profile-large">Client</div>
-                            <div class="member-since">Joined at 10.12.2025</div>
+                            <div class="profile-email">user@gmail.com</div>
                         </div>
                     </div>
+                    <div class="user-status">
+                        <div class="profile-role">Client</div>
+                        <div class="member-since">Joined at 10.12.2025</div>
+                    </div>
+                    <div class="divider"></div>
                     <div class="theme-toggle">
                         <div class="theme-slider" id="themeSlider"></div>
                         <button class="theme-btn" data-theme="light">
@@ -76,14 +80,15 @@
                             <i class="fa-regular fa-moon"></i>
                         </button>
                         <button class="theme-btn" data-theme="system">
-                            <i class="fa-regular fa-computer"></i>
+                            <i class="fa-solid fa-desktop"></i>
                         </button>
                     </div>
+                    <div class="divider"></div>
                     <div class="options">
-                        <div class="option" id="lightModeOption">
+                        <div class="option my-profile-button" id="lightModeOption">
                             <a href="/profile">My Profile</a>
                         </div>
-                        <div class="option" id="darkModeOption">
+                        <div class="option logout-button" id="darkModeOption">
                             <form method="POST" action="/logout">
                                 @csrf
                                 <button type="submit">Logout</button>
