@@ -52,7 +52,7 @@
                 </button>
             </div>
 
-            <div class="menu-content" id="profileMenuContent">
+            <div class="menu-content hidden" id="profileMenuContent">
                 <h3 class="menu-title">Profile</h3>
                 <div class="menu-item">
                     <div class="profile-overview">
