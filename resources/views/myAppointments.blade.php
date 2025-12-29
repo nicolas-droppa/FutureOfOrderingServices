@@ -11,10 +11,31 @@
     </div>
 
     <div id="calendarView" class="calendar-view">
+        <div class="calendar-controls">
+            <div class="year-container">
+                <button class="year-button" id="prevYear">&lt;</button>
+                <span id="currentYear">2025</span>
+                <button class="year-button" id="nextYear">&gt;</button>
+            </div>
+            <div class="months-container">
+                <button class="month-button" id="buttonJanuary"><div class="month-name">January</div> <div class="month-appointment-count" id="januaryAppointmentCount">6</div></button>
+                <button class="month-button" id="buttonFebruary"><div class="month-name">February</div> <div class="month-appointment-count" id="februaryAppointmentCount">2</div></button>
+                <button class="month-button" id="buttonMarch"><div class="month-name">March</div> <div class="month-appointment-count" id="marchAppointmentCount">0</div></button>
+                <button class="month-button" id="buttonApril"><div class="month-name">April</div> <div class="month-appointment-count" id="aprilAppointmentCount">0</div></button>
+                <button class="month-button" id="buttonMay"><div class="month-name">May</div> <div class="month-appointment-count" id="mayAppointmentCount">1</div></button>
+                <button class="month-button" id="buttonJune"><div class="month-name">June</div> <div class="month-appointment-count" id="juneAppointmentCount">4</div></button>
+                <button class="month-button" id="buttonJuly"><div class="month-name">July</div> <div class="month-appointment-count" id="julyAppointmentCount">0</div></button>
+                <button class="month-button" id="buttonAugust"><div class="month-name">August</div> <div class="month-appointment-count" id="augustAppointmentCount">2</div></button>
+                <button class="month-button" id="buttonSeptember"><div class="month-name">September</div> <div class="month-appointment-count" id="septemberAppointmentCount">0</div></button>
+                <button class="month-button" id="buttonOctober"><div class="month-name">October</div> <div class="month-appointment-count" id="octoberAppointmentCount">0</div></button>
+                <button class="month-button" id="buttonNovember"><div class="month-name">November</div> <div class="month-appointment-count" id="novemberAppointmentCount">6</div></button>
+                <button class="month-button" id="buttonDecember"><div class="month-name">December</div> <div class="month-appointment-count" id="decemberAppointmentCount">1</div></button>
+            </div>
+        </div>
         <div id="calendarContainer"></div>
     </div>
 
-    <div id="listView" class="calendar-view hidden">
+    <div id="listView" class="list-view hidden">
         <h2 class="text-xl font-semibold mb-2">Appointments List</h2>
         <ul class="space-y-2">
             <li class="p-2 border rounded">
@@ -56,51 +77,56 @@ function formatDate(date) {
 
 function generateCalendar(year, month) {
     const container = document.getElementById('calendarContainer');
-    container.innerHTML = ''; // Clear previous
+    container.innerHTML = '';
 
-    const firstDayWeek = new Date(year, month, 1).getDay(); // 0 = Sunday
+    const firstDayWeek = new Date(year, month, 1).getDay();
     const totalDays = daysInMonth(year, month);
 
-    const grid = document.createElement('div');
-    grid.style.display = 'grid';
-    grid.style.gridTemplateColumns = 'repeat(7, 1fr)';
-    grid.style.gap = '5px';
+    const calendar = document.createElement('div');
+    calendar.className = 'calendar-grid';
 
-    ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].forEach(d => {
+    // Weekday header
+    ['Su','Mo','Tu','We','Th','Fr','Sa'].forEach(d => {
         const header = document.createElement('div');
         header.textContent = d;
-        header.style.fontWeight = 'bold';
-        header.style.textAlign = 'center';
-        grid.appendChild(header);
+        header.className = 'calendar-weekday';
+        calendar.appendChild(header);
     });
 
-    for(let i = 0; i < firstDayWeek; i++) {
+    // Empty cells before first day
+    for (let i = 0; i < firstDayWeek; i++) {
         const empty = document.createElement('div');
-        grid.appendChild(empty);
+        empty.className = 'calendar-cell calendar-cell--empty';
+        calendar.appendChild(empty);
     }
 
-    for(let day = 1; day <= totalDays; day++) {
+    // Days after empty cells
+    for (let day = 1; day <= totalDays; day++) {
         const dateStr = formatDate(new Date(year, month, day));
         const dayDiv = document.createElement('div');
-        dayDiv.textContent = day;
-        dayDiv.style.padding = '10px';
-        dayDiv.style.border = '1px solid #ccc';
-        dayDiv.style.textAlign = 'center';
+        dayDiv.className = 'calendar-cell';
+
+        const number = document.createElement('div');
+        number.className = 'calendar-day-number';
+        number.textContent = day;
+        dayDiv.appendChild(number);
 
         const dayAppointments = appointments.filter(a => a.date === dateStr);
-        if(dayAppointments.length > 0) {
-            dayDiv.style.backgroundColor = '#90cdf4';
-            dayDiv.title = dayAppointments.map(a => `${a.title} (${a.duration} min)`).join('\n');
+        if (dayAppointments.length > 0) {
+            dayDiv.classList.add('calendar-cell--has-appointments');
+            dayDiv.title = dayAppointments
+                .map(a => `${a.title} (${a.duration} min)`)
+                .join('\n');
         }
 
-        grid.appendChild(dayDiv);
+        calendar.appendChild(dayDiv);
     }
 
-    container.appendChild(grid);
+    container.appendChild(calendar);
 }
-
 
 generateCalendar(2025, 2);
 </script>
+
 
 @endsection
