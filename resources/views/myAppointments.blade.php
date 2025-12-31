@@ -57,75 +57,14 @@
     </div>
 </div>
 
-<script>
-const appointments = [
-    { date: '20.03.2025', title: 'Haircut', duration: 60 },
-    { date: '25.03.2025', title: 'Beard Trim', duration: 30 },
-    { date: '10.02.2025', title: 'Full Styling', duration: 90 },
-];
+<script type="module">
+    import { initCalendarView } from '../js/pages/appointmentsCalendar.js';
+    import { initViewToggle } from '../js/pages/appointmentsViewToggle.js';
 
-function daysInMonth(year, month) {
-    return new Date(year, month + 1, 0).getDate();
-}
-
-function formatDate(date) {
-    const d = String(date.getDate()).padStart(2, '0');
-    const m = String(date.getMonth() + 1).padStart(2, '0');
-    const y = date.getFullYear();
-    return `${d}.${m}.${y}`;
-}
-
-function generateCalendar(year, month) {
-    const container = document.getElementById('calendarContainer');
-    container.innerHTML = '';
-
-    const firstDayWeek = new Date(year, month, 1).getDay();
-    const totalDays = daysInMonth(year, month);
-
-    const calendar = document.createElement('div');
-    calendar.className = 'calendar-grid';
-
-    // Weekday header
-    ['Su','Mo','Tu','We','Th','Fr','Sa'].forEach(d => {
-        const header = document.createElement('div');
-        header.textContent = d;
-        header.className = 'calendar-weekday';
-        calendar.appendChild(header);
+    document.addEventListener('DOMContentLoaded', () => {
+        initCalendarView();
+        initViewToggle();
     });
-
-    // Empty cells before first day
-    for (let i = 0; i < firstDayWeek; i++) {
-        const empty = document.createElement('div');
-        empty.className = 'calendar-cell calendar-cell--empty';
-        calendar.appendChild(empty);
-    }
-
-    // Days after empty cells
-    for (let day = 1; day <= totalDays; day++) {
-        const dateStr = formatDate(new Date(year, month, day));
-        const dayDiv = document.createElement('div');
-        dayDiv.className = 'calendar-cell';
-
-        const number = document.createElement('div');
-        number.className = 'calendar-day-number';
-        number.textContent = day;
-        dayDiv.appendChild(number);
-
-        const dayAppointments = appointments.filter(a => a.date === dateStr);
-        if (dayAppointments.length > 0) {
-            dayDiv.classList.add('calendar-cell--has-appointments');
-            dayDiv.title = dayAppointments
-                .map(a => `${a.title} (${a.duration} min)`)
-                .join('\n');
-        }
-
-        calendar.appendChild(dayDiv);
-    }
-
-    container.appendChild(calendar);
-}
-
-generateCalendar(2025, 2);
 </script>
 
 
