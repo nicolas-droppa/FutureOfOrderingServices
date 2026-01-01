@@ -117,6 +117,4 @@ export function initCalendarView() {
     // Initial render
     generateCalendar(currentYear, currentMonth);
     updateYearDisplay();
-
-    console.log('[calendarView] initialized');
 }

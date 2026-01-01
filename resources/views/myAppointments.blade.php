@@ -57,15 +57,7 @@
     </div>
 </div>
 
-<script type="module">
-    import { initCalendarView } from '../js/pages/appointmentsCalendar.js';
-    import { initViewToggle } from '../js/pages/appointmentsViewToggle.js';
-
-    document.addEventListener('DOMContentLoaded', () => {
-        initCalendarView();
-        initViewToggle();
-    });
-</script>
+@vite('resources/js/pages/myAppointmentsEntry.js')
 
 
 @endsection
