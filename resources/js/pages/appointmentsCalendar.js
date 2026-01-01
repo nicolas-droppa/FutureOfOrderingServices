@@ -37,13 +37,30 @@ export function generateCalendar(year, month) {
     });
 
     // Empty cells before first day
+    let totalDaysPrevMonth = 0;
+
+    if (month == 0) {
+        totalDaysPrevMonth = daysInMonth(year - 1, 11);
+    } else {
+        totalDaysPrevMonth = daysInMonth(year, month - 1);
+    }
+
     for (let i = 0; i < firstDayWeek; i++) {
+        // console.log(firstDayWeek);
+        // console.log('td:' + totalDays);
+        // console.log('tdpm:' + totalDaysPrevMonth);
         const empty = document.createElement('div');
         empty.className = 'calendar-cell calendar-cell--empty';
+
+        const number = document.createElement('div');
+        number.className = 'calendar-day-number';
+        number.textContent = totalDaysPrevMonth - firstDayWeek + 1 + i;
+        empty.appendChild(number);
+
         calendar.appendChild(empty);
     }
 
-    // Days
+    // Days in current month
     for (let day = 1; day <= totalDays; day++) {
         const dateStr = formatDate(new Date(year, month, day));
         const dayDiv = document.createElement('div');
@@ -63,6 +80,19 @@ export function generateCalendar(year, month) {
         }
 
         calendar.appendChild(dayDiv);
+    }
+
+    //Days after end of month
+    const totalCells = firstDayWeek + totalDays;
+    const remainingCells = 7 * 6 - totalCells;
+    for (let i = 1; i <= remainingCells; i++) {
+        const empty = document.createElement('div');
+        empty.className = 'calendar-cell calendar-cell--empty';
+        const number = document.createElement('div');
+        number.className = 'calendar-day-number';
+        number.textContent = i;
+        empty.appendChild(number);
+        calendar.appendChild(empty);
     }
 
     container.appendChild(calendar);
