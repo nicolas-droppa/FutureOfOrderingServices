@@ -33,6 +33,4 @@ export function initViewToggle() {
 
     // Set initial state
     showCalendarBtn.classList.add('active');
-
-    console.log('[viewToggle] initialized');
 }

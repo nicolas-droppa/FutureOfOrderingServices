@@ -155,6 +155,7 @@ main {
 .calendar-cell--empty {
     background: var(--color-bg-complement);
     border: none;
+    color: var(--color-text-unimportant);
 }
 
 .calendar-day-number {
