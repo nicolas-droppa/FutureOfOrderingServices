@@ -4,9 +4,13 @@
 
 import { daysInMonth, formatDate, getFirstDayOfMonth } from '../utils/dateUtils.js';
 import { getAppointmentsForDate } from '../utils/appointmentUtils.js';
+import { getTodayInfo } from '../utils/todayUtils.js';
 
-let currentYear = 2025;
-let currentMonth = 2; // March (0-indexed)
+const info = getTodayInfo();
+let currentYear = info.year;
+let currentMonth = info.monthNumber - 1;
+let currentDay = info.day;
+let currentDayNumber = info.dayNumber;
 
 /**
  * Generate and render the calendar for a specific month
@@ -33,6 +37,7 @@ export function generateCalendar(year, month) {
         const header = document.createElement('div');
         header.textContent = d;
         header.className = 'calendar-weekday';
+        if (currentDay.startsWith(header.textContent)) header.classList.add('active-date');
         calendar.appendChild(header);
     });
 
@@ -69,6 +74,10 @@ export function generateCalendar(year, month) {
         const number = document.createElement('div');
         number.className = 'calendar-day-number';
         number.textContent = day;
+        if (number.textContent == currentDayNumber && month == info.monthNumber - 1 && year == info.year) {
+            dayDiv.classList.add('active-cell');
+            number.classList.add('active-day-number');
+        }
         dayDiv.appendChild(number);
 
         const dayAppointments = getAppointmentsForDate(dateStr);
@@ -137,14 +146,20 @@ export function initCalendarView() {
     monthButtons.forEach((btn, index) => {
         btn.addEventListener('click', () => {
             currentMonth = index;
-            // Highlight active month (optional)
-            monthButtons.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
+            monthButtons.forEach(b => b.classList.remove('active-month'));
+            btn.classList.add('active-month');
             generateCalendar(currentYear, currentMonth);
         });
     });
 
     // Initial render
     generateCalendar(currentYear, currentMonth);
+
+    const monthsContainer = document.getElementById("monthsContainer");
+    const buttons = monthsContainer.children;
+    if (buttons[currentMonth]) {
+        buttons[currentMonth].classList.add("active-month");
+    }
+
     updateYearDisplay();
 }
