@@ -5,6 +5,8 @@
 @section('content')
 <div class="my-appointments-container">
 
+    <div id="todayDisplay" style="margin-bottom: 1rem; font-size: 0.95rem; color: #666;"></div>
+
     <div class="buttons">
         <button id="showCalendar" class="button-choice">Calendar</button>
         <button id="showList" class="button-choice">List</button>
@@ -17,7 +19,7 @@
                 <span id="currentYear">2025</span>
                 <button class="year-button" id="nextYear">&gt;</button>
             </div>
-            <div class="months-container">
+            <div class="months-container" id="monthsContainer">
                 <button class="month-button" id="buttonJanuary"><div class="month-name">January</div> <div class="month-appointment-count" id="januaryAppointmentCount">6</div></button>
                 <button class="month-button" id="buttonFebruary"><div class="month-name">February</div> <div class="month-appointment-count" id="februaryAppointmentCount">2</div></button>
                 <button class="month-button" id="buttonMarch"><div class="month-name">March</div> <div class="month-appointment-count" id="marchAppointmentCount">0</div></button>

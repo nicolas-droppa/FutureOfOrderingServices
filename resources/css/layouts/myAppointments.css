@@ -64,6 +64,24 @@ main {
     justify-content: center;
 }
 
+.active-month {
+    color: white;
+    background-color: var(--color-primary-hover);
+}
+
+.active-date {
+    color: var(--color-primary);
+    font-weight: bold;
+}
+
+.active-cell {
+    outline: .0625rem solid var(--color-primary);
+}
+
+.active-day-number {
+    color: var(--color-primary)!important;
+}
+
 .my-appointments-container {
     display: flex;
     flex-direction: column;
@@ -150,12 +168,19 @@ main {
     padding: 1rem;
     position: relative;
     cursor: pointer;
+    transition: box-shadow 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+}
+
+.calendar-cell:hover {
+    box-shadow: 1px 1px 8px var(--color-bg-complement);
+    background-color: var(--color-bg-complement);
+    color: var(--color-text-unimportant-dark);
 }
 
 .calendar-cell--empty {
     background: var(--color-bg-complement);
     border: none;
-    color: var(--color-text-unimportant);
+    color: var(--color-text-unimportant-dark-hover);
 }
 
 .calendar-day-number {
