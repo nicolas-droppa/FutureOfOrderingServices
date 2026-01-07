@@ -120,7 +120,8 @@ export function updateYearDisplay() {
 /**
  * Initialize calendar view with event listeners
  */
-export function initCalendarView() {
+export function initCalendarView(appointments) {
+    console.log(appointments);
     // Year navigation
     const prevYearBtn = document.getElementById('prevYear');
     const nextYearBtn = document.getElementById('nextYear');
