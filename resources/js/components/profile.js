@@ -2,8 +2,6 @@ function initProfileMenu() {
     const profileMenuBtn = document.getElementById('profileButton');
     const profileMenuContent = document.getElementById('profileMenuContent');
     const settingsOverlay = document.getElementById('settingsOverlay');
-
-    // Hide notifications menu when settings is opened
     const notificationsMenu = document.getElementById('notificationsMenu');
 
     // Animate profile menu appearance
@@ -23,10 +21,10 @@ function initProfileMenu() {
         profileInfo?.classList.add('profile-wanish');
         profileIcon?.classList.add('profile-move-icon');
 
-        // Hide other menus
         notificationsMenu?.classList.add('hidden');
     });
 
+    // Hover icon to show menu
     profileMenuContent.addEventListener('mouseenter', () => {
         profileMenuContent.classList.remove('hidden');
         settingsOverlay?.classList.remove('hidden');
@@ -52,6 +50,7 @@ function initProfileMenu() {
         }, 100);
     });
 
+    // Hide menu when mouse leaves
     profileMenuContent.addEventListener('mouseleave', () => {
         profileMenuContent.classList.add('hidden');
         settingsOverlay?.classList.add('hidden');
