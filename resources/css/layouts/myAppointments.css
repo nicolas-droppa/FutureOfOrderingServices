@@ -205,6 +205,6 @@ main {
     width: 100%;
 }
 
-.calendar-details-title{
+.calendar-details-date{
     font-size: var(--font-size-large);
 }

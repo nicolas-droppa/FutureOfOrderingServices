@@ -1,8 +1,8 @@
 /**
- * Calendar view handler for myAppointments page
+ * Calendar Details view handler for myAppointments page
  */
 
-import { daysInMonth, formatDate, getFirstDayOfMonth } from '../utils/dateUtils.js';
+import { daysInMonth, formatDate, getFirstDayOfMonth, formatFullDate } from '../utils/dateUtils.js';
 import { getAppointmentsForDate } from '../utils/appointmentUtils.js';
 import { getTodayInfo } from '../utils/todayUtils.js';
 
@@ -13,18 +13,35 @@ let currentDay = info.day;
 let currentDayNumber = info.dayNumber;
 
 /**
- * Generate and render the calendar for a specific month
+ * Generate and render the details for selected day
  * @param {number} year
  * @param {number} month - 0-indexed
+ * @param {number} day
  */
-export function generateCalendar(year, month) {
-    const container = document.getElementById('calendarContainer');
+export function generateDetails(date) {
+    const container = document.getElementById('calendarDetails');
     if (!container) {
-        console.warn('[calendarView] #calendarContainer not found');
+        console.warn('[calendarDetails] #calendarDetails not found');
         return;
     }
 
     container.innerHTML = '';
+
+    console.log(date);
+
+    //append date of the selected day
+    const containerDate = document.createElement('div');
+    containerDate.textContent = formatFullDate(date);
+    containerDate.className = 'calendar-details-date';
+    container.appendChild(containerDate);
+
+    //append number of appointments of the selected day
+    const appointmentsCountDate = document.createElement('div');
+    appointmentsCountDate.textContent = '[ 0 ] Appointments for this day' // will fetch this shit later
+    appointmentsCountDate.className = 'calendar-details-summary';
+    container.appendChild(appointmentsCountDate);
+
+    /*
 
     const firstDayWeek = getFirstDayOfMonth(year, month);
     const totalDays = daysInMonth(year, month);
@@ -71,8 +88,6 @@ export function generateCalendar(year, month) {
         const dayDiv = document.createElement('div');
         dayDiv.className = 'calendar-cell';
 
-        dayDiv.dataset.date = dateStr;  //storing date -> using in details of the day
-
         const number = document.createElement('div');
         number.className = 'calendar-day-number';
         number.textContent = day;
@@ -107,62 +122,63 @@ export function generateCalendar(year, month) {
     }
 
     container.appendChild(calendar);
+    */
 }
 
 /**
  * Update year display
  */
-export function updateYearDisplay() {
-    const yearSpan = document.getElementById('currentYear');
-    if (yearSpan) {
-        yearSpan.textContent = currentYear;
-    }
-}
+// export function updateYearDisplay() {
+//     const yearSpan = document.getElementById('currentYear');
+//     if (yearSpan) {
+//         yearSpan.textContent = currentYear;
+//     }
+// }
 
 /**
  * Initialize calendar view with event listeners
  */
-export function initCalendarView(appointments) {
-    console.log(appointments);
-    // Year navigation
-    const prevYearBtn = document.getElementById('prevYear');
-    const nextYearBtn = document.getElementById('nextYear');
+// export function initCalendarView(appointments) {
+//     console.log(appointments);
+//     // Year navigation
+//     const prevYearBtn = document.getElementById('prevYear');
+//     const nextYearBtn = document.getElementById('nextYear');
 
-    if (prevYearBtn) {
-        prevYearBtn.addEventListener('click', () => {
-            currentYear--;
-            updateYearDisplay();
-            generateCalendar(currentYear, currentMonth);
-        });
-    }
+//     if (prevYearBtn) {
+//         prevYearBtn.addEventListener('click', () => {
+//             currentYear--;
+//             updateYearDisplay();
+//             generateCalendar(currentYear, currentMonth);
+//         });
+//     }
 
-    if (nextYearBtn) {
-        nextYearBtn.addEventListener('click', () => {
-            currentYear++;
-            updateYearDisplay();
-            generateCalendar(currentYear, currentMonth);
-        });
-    }
+//     if (nextYearBtn) {
+//         nextYearBtn.addEventListener('click', () => {
+//             currentYear++;
+//             updateYearDisplay();
+//             generateCalendar(currentYear, currentMonth);
+//         });
+//     }
 
-    // Month buttons
-    const monthButtons = document.querySelectorAll('.month-button');
-    monthButtons.forEach((btn, index) => {
-        btn.addEventListener('click', () => {
-            currentMonth = index;
-            monthButtons.forEach(b => b.classList.remove('active-month'));
-            btn.classList.add('active-month');
-            generateCalendar(currentYear, currentMonth);
-        });
-    });
+//     // Month buttons
+//     const monthButtons = document.querySelectorAll('.month-button');
+//     monthButtons.forEach((btn, index) => {
+//         btn.addEventListener('click', () => {
+//             currentMonth = index;
+//             monthButtons.forEach(b => b.classList.remove('active-month'));
+//             btn.classList.add('active-month');
+//             generateCalendar(currentYear, currentMonth);
+//         });
+//     });
 
-    // Initial render
-    generateCalendar(currentYear, currentMonth);
+//     // Initial render
+//     generateCalendar(currentYear, currentMonth);
 
-    const monthsContainer = document.getElementById("monthsContainer");
-    const buttons = monthsContainer.children;
-    if (buttons[currentMonth]) {
-        buttons[currentMonth].classList.add("active-month");
-    }
+//     const monthsContainer = document.getElementById("monthsContainer");
+//     const buttons = monthsContainer.children;
+//     if (buttons[currentMonth]) {
+//         buttons[currentMonth].classList.add("active-month");
+//     }
 
-    updateYearDisplay();
-}
+//     updateYearDisplay();
+// }
