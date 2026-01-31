@@ -26,14 +26,17 @@ export function generateCalendar(year, month) {
 
     container.innerHTML = '';
 
-    const firstDayWeek = getFirstDayOfMonth(year, month);
+    let firstDayWeek = getFirstDayOfMonth(year, month);
+    // Convert Sunday (0) to 6 for Monday-based week
+    firstDayWeek = (firstDayWeek === 0) ? 6 : (firstDayWeek - 1);
+    
     const totalDays = daysInMonth(year, month);
 
     const calendar = document.createElement('div');
     calendar.className = 'calendar-grid';
 
-    // Weekday header
-    ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'].forEach(d => {
+    // Weekday header - starting with Monday
+    ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'].forEach(d => {
         const header = document.createElement('div');
         header.textContent = d;
         header.className = 'calendar-weekday';
