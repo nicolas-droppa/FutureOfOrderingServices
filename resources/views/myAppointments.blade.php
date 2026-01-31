@@ -35,6 +35,21 @@
             </div>
         </div>
         <div id="calendarContainer"></div>
+        <div class="calendar-details" id="calendarDetails">
+            <div class="calendar-details-title">
+                <div class="calendar-details-title-date">
+                    Saturday, January 31, 2026
+                </div>
+            </div>
+
+            <div class="calendar-details-summary">
+                [ 0 ] Appointments for this day
+            </div>
+
+            <div class="calendar-details-content">
+                
+            </div>
+        </div>
     </div>
 
     <div id="listView" class="list-view hidden">
