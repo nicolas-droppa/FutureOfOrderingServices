@@ -35,6 +35,23 @@
             </div>
         </div>
         <div id="calendarContainer"></div>
+        <!-- Friendly reminder for my stoopid head -> this will be also modal if someone opens this on phone and ALSO STYLE SOMEHOW THAT ACTIVE BORDER IF SOMEONE OPENS ANOTHER DAY :( -->
+        <div class="calendar-details" id="calendarDetails">
+            <!-- This all we be appended later by JS --now serves as my placeholder bitches -->
+            <div class="calendar-details-date" id="calendarDetailsDate">
+                <!-- already fetching this shit --BUT NEEDS TO BE AUTOMATICALY TODAY ON FIRST LOAD -->
+                Saturday, January 31, 2026
+            </div>
+
+            <div class="calendar-details-summary">
+                <!-- will fetch this shit later -->
+                [ 0 ] Appointments for this day
+            </div>
+
+            <div class="calendar-details-content">
+                
+            </div>
+        </div>
     </div>
 
     <div id="listView" class="list-view hidden">

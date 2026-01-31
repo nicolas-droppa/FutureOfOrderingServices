@@ -53,3 +53,28 @@ export function parseDate(dateStr) {
     const [day, month, year] = dateStr.split('.').map(Number);
     return new Date(year, month - 1, day);
 }
+
+/**
+ * Format any date to: "weekday, month day, year"
+ * @param {Date|string} date - Date object or DD.MM.YYYY string
+ */
+export function formatFullDate(date) {
+    const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    const months = ['January', 'February', 'March', 'April', 'May', 'June',
+                    'July', 'August', 'September', 'October', 'November', 'December'];
+
+    // If date is a string -> parse it first
+    let dateObj = date;
+    if (typeof date === 'string') {
+        dateObj = parseDate(date);
+        if (!dateObj) return '';
+    }
+
+    const dayName = days[dateObj.getDay()];
+    const monthName = months[dateObj.getMonth()];
+    const dayOfMonth = dateObj.getDate();
+    const year = dateObj.getFullYear();
+
+    return `${dayName}, ${monthName} ${dayOfMonth}, ${year}`;
+}
+ 
