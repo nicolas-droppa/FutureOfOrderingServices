@@ -108,6 +108,7 @@ main {
     display: flex;
     gap: 1rem;
     min-height: 0;
+    align-items: stretch;
 }
 
 /*##################################
@@ -203,10 +204,10 @@ main {
 
 .calendar-details {
     background-color: var(--color-bg-complement);
-    flex: 1;
     display: flex;
     flex-direction: column;
     padding: 1rem;
+    flex: 1;
 }
 
 .calendar-details-date{
@@ -225,7 +226,6 @@ main {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0.5rem 0;
     height: 100px;
     min-height: 100px;
     background-color: red;
