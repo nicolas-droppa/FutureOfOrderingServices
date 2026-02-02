@@ -18,7 +18,7 @@ let currentDayNumber = info.dayNumber;
  * @param {number} month - 0-indexed
  * @param {number} day
  */
-export function generateDetails(date) {
+export function generateDetails(date, fromHour, toHour) {
     const container = document.getElementById('calendarDetails');
     if (!container) {
         console.warn('[calendarDetails] #calendarDetails not found');
@@ -40,6 +40,30 @@ export function generateDetails(date) {
     appointmentsCountDate.textContent = '[ 0 ] Appointments for this day' // will fetch this shit later
     appointmentsCountDate.className = 'calendar-details-summary';
     container.appendChild(appointmentsCountDate);
+
+    //append time range of the selected day
+    const containerTimeContent = document.createElement('div');
+    containerTimeContent.className = 'calendar-details-content';
+
+    for (let hour = fromHour; hour <= toHour; hour++) {
+        const timeSlot = document.createElement('div');
+        timeSlot.className = 'calendar-details-time-slot';
+
+        const timeSlotTime = document.createElement('div');
+        timeSlotTime.textContent = `${hour}`;
+        timeSlotTime.className = 'calendar-details-time-slot-time';
+        timeSlot.appendChild(timeSlotTime);
+
+        const timeSlotContent = document.createElement('div');
+        timeSlotContent.className = 'calendar-details-time-slot-content';
+        timeSlot.appendChild(timeSlotContent);
+
+        containerTimeContent.appendChild(timeSlot);
+    }
+
+    container.appendChild(containerTimeContent);
+
+    
 
     /*
 
