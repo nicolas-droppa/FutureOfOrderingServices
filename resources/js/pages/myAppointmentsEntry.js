@@ -18,6 +18,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     if (!cell || cell.classList.contains('calendar-cell--empty')) return;
 
-    generateDetails(cell.dataset.date, 8, 21); //fetch from and to later...
+    generateDetails(cell.dataset.date, 8, 23); //fetch from and to later...
   });
 });

@@ -11,6 +11,46 @@ let currentYear = info.year;
 let currentMonth = info.monthNumber - 1;
 let currentDay = info.day;
 let currentDayNumber = info.dayNumber;
+let timeIndicatorInterval = null;
+
+/**
+ * Calculate the position of the time indicator based on current time
+ * @param {number} fromHour
+ * @param {number} toHour
+ * @returns {number} Position in pixels from the top
+ */
+function calculateTimeIndicatorPosition(fromHour, toHour) {
+    const now = new Date();
+    const currentHour = now.getHours();
+    const currentMinutes = now.getMinutes();
+    
+    // If current time is outside the range, return -1 to hide the indicator
+    if (currentHour < fromHour || currentHour > toHour) {
+        return -1;
+    }
+    
+    // Calculate position: (hours passed + minutes fraction) * height per hour
+    const hoursPassed = currentHour - fromHour + currentMinutes / 60;
+    const slotHeight = 100;
+    return hoursPassed * slotHeight;
+}
+
+/**
+ * Update the position of the time indicator
+ * @param {HTMLElement} indicator
+ * @param {number} fromHour
+ * @param {number} toHour
+ */
+function updateTimeIndicator(indicator, fromHour, toHour) {
+    const position = calculateTimeIndicatorPosition(fromHour, toHour);
+    
+    if (position < 0) {
+        indicator.style.display = 'none';
+    } else {
+        indicator.style.display = 'block';
+        indicator.style.transform = `translateY(${position}px)`;
+    }
+}
 
 /**
  * Generate and render the details for selected day
@@ -23,6 +63,11 @@ export function generateDetails(date, fromHour, toHour) {
     if (!container) {
         console.warn('[calendarDetails] #calendarDetails not found');
         return;
+    }
+
+    // Clear any existing time indicator interval
+    if (timeIndicatorInterval) {
+        clearInterval(timeIndicatorInterval);
     }
 
     container.innerHTML = '';
@@ -50,7 +95,7 @@ export function generateDetails(date, fromHour, toHour) {
         timeSlot.className = 'calendar-details-time-slot';
 
         const timeSlotTime = document.createElement('div');
-        timeSlotTime.textContent = `${hour}`;
+        timeSlotTime.textContent = `${String(hour).padStart(2, '0')}:00`;
         timeSlotTime.className = 'calendar-details-time-slot-time';
         timeSlot.appendChild(timeSlotTime);
 
@@ -61,7 +106,17 @@ export function generateDetails(date, fromHour, toHour) {
         containerTimeContent.appendChild(timeSlot);
     }
 
-    container.appendChild(containerTimeContent);
+    // LINE INDICATING CURRENT TIME
+    const timeIndicator = document.createElement('div');
+    timeIndicator.className = 'calendar-details-time-indicator';
+    containerTimeContent.appendChild(timeIndicator);
+
+    container.appendChild(containerTimeContent);  /* TODO: ROZBIUTA KKTINA */
+
+    updateTimeIndicator(timeIndicator, fromHour, toHour);
+    timeIndicatorInterval = setInterval(() => {
+        updateTimeIndicator(timeIndicator, fromHour, toHour);
+    }, 60000); // 1min
 
     
 
