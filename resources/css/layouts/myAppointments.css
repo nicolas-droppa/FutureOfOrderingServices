@@ -7,6 +7,7 @@
     --color-text-unimportant-hover: rgb(85, 85, 85);
     --color-text-unimportant-dark: #646464;
     --color-text-unimportant-dark-hover: #444444;
+    --color-text-unimportant-light: rgb(177, 177, 177);
 
     --color-secondary-button: #e9e9e9;
     --color-secondary-button-hover: #d3d3d3;
@@ -217,16 +218,36 @@ main {
 .calendar-details-content {
     display: flex;
     flex-direction: column;
-    gap: .1rem;
     margin-top: 1rem;
     overflow-x: hidden;
+    border-top: .0625rem dashed var(--color-text-unimportant);
 }
 
 .calendar-details-time-slot {
+    position: relative;
     display: flex;
     justify-content: space-between;
     align-items: center;
     height: 100px;
     min-height: 100px;
-    background-color: red;
+    /* background-color: red; */
+    border-bottom: .0625rem dashed var(--color-text-unimportant-light);
+}
+
+.calendar-details-time-slot-time {
+    position: absolute;
+    font-size: var(--font-size-normal);
+    color: var(--color-text-unimportant);
+    top: 0;
+}
+
+.calendar-details-time-indicator {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 20px;
+    background: red;
+    box-shadow: 0 0 8px var(--color-primary);
+    z-index: 10;
+    will-change: transform;
 }
