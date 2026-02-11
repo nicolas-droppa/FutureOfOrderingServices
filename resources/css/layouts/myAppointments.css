@@ -216,6 +216,7 @@ main {
 }
 
 .calendar-details-content {
+    position: relative;
     display: flex;
     flex-direction: column;
     margin-top: 1rem;
@@ -228,8 +229,8 @@ main {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 100px;
-    min-height: 100px;
+    height: 6.25rem;
+    min-height: 6.25rem;
     /* background-color: red; */
     border-bottom: .0625rem dashed var(--color-text-unimportant-light);
 }
@@ -245,9 +246,9 @@ main {
     position: absolute;
     left: 0;
     right: 0;
-    height: 20px;
-    background: red;
+    height: .125rem;
+    background: var(--color-primary);
+    opacity: 0.8;
     box-shadow: 0 0 8px var(--color-primary);
     z-index: 10;
-    will-change: transform;
 }
