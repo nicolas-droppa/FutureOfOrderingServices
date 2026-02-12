@@ -37,32 +37,21 @@
     --font-size-small: 0.875rem;
 }
 
-.theme-dark {
-    --color-bg: #18181f;
-    --color-bg-complement: #15151b;
-    --color-text: #f0f0f0;
-    --color-text-black: #131313;
-    --color-text-unimportant: #c2c2c2;
-    --color-text-unimportant-hover: #d3d2d2;
-    --color-text-unimportant-dark: #646464;
-    --color-text-unimportant-dark-hover: #444444;
-
-    --color-secondary-button: #e9e9e9;
-    --color-secondary-button-hover: #d3d3d3;
-
-    --color-button-hover: #1d1d27;
-
-    --color-border: #666666;
-    --color-border-hover:rgb(99, 99, 99);
-    --color-box-shadow: rgba(0, 0, 0, 0.219);
-    --color-box-shadow-input: rgba(11, 11, 12, 0.575);
+.today .calendar-day-number,
+.calendar-cell.today .calendar-day-number {
+    color: var(--color-primary)!important;
 }
 
-main {
-    display: flex;
-    height: 90vh;
-    align-items: center;
-    justify-content: center;
+.active-cell {
+    background-color: var(--color-primary-hover);
+    color: var(--color-text-white);
+    box-shadow: 0 0 12px rgba(106,72,228,0.22);
+    outline: .125rem solid var(--color-primary);
+}
+
+.active-cell .calendar-day-number,
+.active-day-number {
+    color: var(--color-text-white)!important;
 }
 
 .active-month {
@@ -79,8 +68,57 @@ main {
     outline: .0625rem solid var(--color-primary);
 }
 
+.active-cell:hover {
+    outline: none;
+}
+
+.today,
+.calendar-cell.today {
+    outline: .0625rem solid var(--color-primary);
+    color: var(--color-text-white);
+}
+
+.today .calendar-day-number,
+.calendar-cell.today .calendar-day-number {
+    color: var(--color-primary)!important;
+}
+
+.active-cell {
+    background: #7b58fb8c!important;
+    outline: .125rem dashed rgb(123, 88, 251);
+}
+
+.active-cell .calendar-day-number,
+.active-day-number {
+    color: var(--color-text-white)!important;
+}
+
 .active-day-number {
     color: var(--color-primary)!important;
+}
+
+.today:hover,
+.calendar-cell.today:hover {
+    color: var(--color-text-white);
+}
+
+.today:hover .calendar-day-number,
+.calendar-cell.today:hover .calendar-day-number {
+    color: var(--color-text-white)!important;
+}
+
+/* If today is selected... */
+.active-cell.today,
+.calendar-cell.active-cell.today {
+    background-color: var(--color-primary-hover);
+    color: var(--color-text-white);
+    box-shadow: 0 0 12px rgba(106,72,228,0.22);
+    outline: .125rem dashed var(--color-primary);
+}
+
+.active-cell.today .calendar-day-number,
+.calendar-cell.active-cell.today .calendar-day-number {
+    color: var(--color-text-white)!important;
 }
 
 .my-appointments-container {
@@ -177,14 +215,26 @@ main {
 
 .calendar-cell:hover {
     box-shadow: 1px 1px 8px var(--color-bg-complement);
-    background-color: var(--color-bg-complement);
-    color: var(--color-text-unimportant-dark);
+    background-color: var(--color-primary);
+    color: var(--color-bg);
+}
+
+.active-cell:hover .calendar-day-number,
+.active-cell:hover .active-day-number {
+    color: var(--color-text-white)!important;
+    outline: none!important;
 }
 
 .calendar-cell--empty {
     background: var(--color-bg-complement);
     border: none;
     color: var(--color-text-unimportant-dark-hover);
+}
+
+.calendar-cell--empty:hover {
+    background-color: var(--color-primary);
+    border: none;
+    opacity: 0.75;
 }
 
 .calendar-day-number {

@@ -80,8 +80,8 @@ export function generateCalendar(year, month) {
         number.className = 'calendar-day-number';
         number.textContent = day;
         if (number.textContent == currentDayNumber && month == info.monthNumber - 1 && year == info.year) {
-            dayDiv.classList.add('active-cell');
-            number.classList.add('active-day-number');
+            // mark today's cell separately from the selected/active cell
+            dayDiv.classList.add('today');
         }
         dayDiv.appendChild(number);
 
