@@ -5,7 +5,7 @@
 @section('content')
 <div class="my-appointments-container">
 
-    <div id="todayDisplay" style="margin-bottom: 1rem; font-size: 0.95rem; color: #666;"></div>
+    <div id="todayDisplay" style="font-size: 0.95rem; color: #666;"></div>
 
     <div class="buttons">
         <button id="showCalendar" class="button-choice">Calendar</button>
@@ -34,7 +34,7 @@
                 <button class="month-button" id="buttonDecember"><div class="month-name">December</div> <div class="month-appointment-count" id="decemberAppointmentCount">1</div></button>
             </div>
         </div>
-        <div id="calendarContainer"></div>
+        <div id="calendarContainer" class="calendar-container"></div>
         <!-- Friendly reminder for my stoopid head -> this will be also modal if someone opens this on phone and ALSO STYLE SOMEHOW THAT ACTIVE BORDER IF SOMEONE OPENS ANOTHER DAY :( -->
         <div class="calendar-details" id="calendarDetails">
             <!-- This all we be appended later by JS --now serves as my placeholder bitches -->
@@ -45,7 +45,7 @@
 
             <div class="calendar-details-summary">
                 <!-- will fetch this shit later -->
-                [ 0 ] Appointments for this day
+                <span>[ 0 ]</span> Appointments for this day
             </div>
 
             <div class="calendar-details-content">
