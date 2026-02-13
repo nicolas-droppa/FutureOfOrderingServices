@@ -11,6 +11,7 @@ let currentYear = info.year;
 let currentMonth = info.monthNumber - 1;
 let currentDay = info.day;
 let currentDayNumber = info.dayNumber;
+let selectedMonth = currentMonth;
 
 /**
  * Generate and render the calendar for a specific month
@@ -150,11 +151,21 @@ export function initCalendarView(appointments) {
     // Month buttons
     const monthButtons = document.querySelectorAll('.month-button');
     monthButtons.forEach((btn, index) => {
-        btn.addEventListener('click', () => {
+        btn.addEventListener('click', (e) => {
             currentMonth = index;
+
+            if (selectedMonth === currentMonth) return;
+
             monthButtons.forEach(b => b.classList.remove('active-month'));
             btn.classList.add('active-month');
             generateCalendar(currentYear, currentMonth);
+
+            console.log(selectedMonth);
+            console.log(currentMonth); //switched to
+            animateMonthTransition(selectedMonth, currentMonth);
+            selectedMonth = currentMonth; //update selected month to the current month after switching
+            console.log("switching month");
+
         });
     });
 
@@ -168,4 +179,21 @@ export function initCalendarView(appointments) {
     }
 
     updateYearDisplay();
+}
+
+function animateMonthTransition(selectedMonth, currentMonth) {
+    console.log(getAnimationDirection(selectedMonth, currentMonth));
+
+    const calendarContainer = document.querySelector('.calendar-container');
+    if (calendarContainer) {
+        calendarContainer.classList.add('fade-out');
+        setTimeout(() => {
+            calendarGrid.classList.remove('fade-out');
+        }, 300);
+    }
+}
+
+function getAnimationDirection(selectedMonth, currentMonth) {
+    if (selectedMonth === currentMonth) return null;
+    return (selectedMonth < currentMonth) ? 'down' : 'up';
 }
