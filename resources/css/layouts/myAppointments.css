@@ -215,6 +215,10 @@
 /*##################################
 *   Calendar Container Styles
 ##################################*/ 
+.calendar-container {
+    overflow: hidden;
+}
+
 .calendar-grid {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
@@ -296,6 +300,10 @@
     margin-top: 1rem;
     overflow-x: hidden;
     border-top: .0625rem dashed var(--color-text-unimportant);
+}
+
+.calendar-details-summary span {
+    color: var(--color-primary);
 }
 
 .calendar-details-time-slot {

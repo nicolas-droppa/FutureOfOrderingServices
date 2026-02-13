@@ -45,7 +45,7 @@
 
             <div class="calendar-details-summary">
                 <!-- will fetch this shit later -->
-                [ 0 ] Appointments for this day
+                <span>[ 0 ]</span> Appointments for this day
             </div>
 
             <div class="calendar-details-content">

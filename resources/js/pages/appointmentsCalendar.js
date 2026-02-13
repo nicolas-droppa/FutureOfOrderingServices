@@ -55,9 +55,6 @@ export function generateCalendar(year, month) {
     }
 
     for (let i = 0; i < firstDayWeek; i++) {
-        // console.log(firstDayWeek);
-        // console.log('td:' + totalDays);
-        // console.log('tdpm:' + totalDaysPrevMonth);
         const empty = document.createElement('div');
         empty.className = 'calendar-cell calendar-cell--empty';
 
@@ -162,7 +159,8 @@ export function initCalendarView(appointments) {
 
             console.log(selectedMonth);
             console.log(currentMonth); //switched to
-            animateMonthTransition(selectedMonth, currentMonth);
+            console.log(getCurrentMonthAnimationDirection(selectedMonth, currentMonth));
+            animateMonthTransition(getCurrentMonthAnimationDirection(selectedMonth, currentMonth));
             selectedMonth = currentMonth; //update selected month to the current month after switching
             console.log("switching month");
 
@@ -172,28 +170,40 @@ export function initCalendarView(appointments) {
     // Initial render
     generateCalendar(currentYear, currentMonth);
 
+    highlightCurrentMonth(currentMonth);
+
+    updateYearDisplay();
+}
+
+function animateMonthTransition() {
+    const calendar = document.querySelector('.calendar-grid');
+    if (!calendar) return;
+
+    calendar.style.transition = "transform 0.3s ease, opacity 0.3s ease";
+    calendar.style.transform = "translateY(0)";
+    calendar.style.opacity = "1";
+
+    requestAnimationFrame(() => {
+        calendar.style.transform = "translateY(-50rem)";
+        calendar.style.opacity = "0";
+    });
+
+    calendar.addEventListener("transitionend", () => {
+        calendar.style.transform = "translateY(0)";
+        calendar.style.opacity = "1";
+    }, { once: true });
+}
+
+
+function getCurrentMonthAnimationDirection(selectedMonth, currentMonth) {
+    if (selectedMonth === currentMonth) return null;
+    return (selectedMonth < currentMonth) ? 'up' : 'down';
+}
+
+function highlightCurrentMonth(currentMonth) {
     const monthsContainer = document.getElementById("monthsContainer");
     const buttons = monthsContainer.children;
     if (buttons[currentMonth]) {
         buttons[currentMonth].classList.add("active-month");
     }
-
-    updateYearDisplay();
-}
-
-function animateMonthTransition(selectedMonth, currentMonth) {
-    console.log(getAnimationDirection(selectedMonth, currentMonth));
-
-    const calendarContainer = document.querySelector('.calendar-container');
-    if (calendarContainer) {
-        calendarContainer.classList.add('fade-out');
-        setTimeout(() => {
-            calendarGrid.classList.remove('fade-out');
-        }, 300);
-    }
-}
-
-function getAnimationDirection(selectedMonth, currentMonth) {
-    if (selectedMonth === currentMonth) return null;
-    return (selectedMonth < currentMonth) ? 'down' : 'up';
 }
