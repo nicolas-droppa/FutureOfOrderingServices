@@ -2,9 +2,9 @@
  * Calendar Details view handler for myAppointments page
  */
 
-import { formatFullDate } from '../utils/dateUtils.js';
+import { formatFullDate } from '../../utils/date.js';
 import { getTodayInfo } from '../utils/todayUtils.js';
-import { getTimeInfo } from '../utils/timeUtils.js';
+import { getTimeInfo } from '../../utils/time.js';
 import { TIME_SLOT_HEIGHT } from '../components/constants.js';
 
 const infoToday = getTodayInfo();
