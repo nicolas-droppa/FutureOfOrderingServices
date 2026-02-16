@@ -1,4 +1,4 @@
-export default function initViewSwitcher() {
+export function initViewSwitcher() {
     const controls = {
         calendar: {
             btn: document.getElementById('showCalendar'),
