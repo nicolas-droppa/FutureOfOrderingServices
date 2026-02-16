@@ -1,4 +1,4 @@
-import { DARK_MODE_STORAGE_KEY } from './constants.js';
+import { DARK_MODE_STORAGE_KEY } from '../config/storageKeys.js';
 
 const body = document.body;
 const buttons = document.querySelectorAll('.theme-btn');

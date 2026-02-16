@@ -1,11 +1,11 @@
-import { initCalendarView } from './appointmentsCalendar.js';
+import { initCalendarView } from './calendar.js';
 import { initViewSwitcher } from './viewSwitcher.js';
-import { displayToday } from '../utils/todayUtils.js';
+import { displayToday } from '../../utils/today.js';
 import initNotificationsMenu from '../../components/notifications/notifications.js';
 
 import { appointmentsData } from '../../config/data/appointments.js';
 
-import { generateDetails } from './appointmentsDetails.js';
+import { generateDetails } from './details.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
   initNotificationsMenu();

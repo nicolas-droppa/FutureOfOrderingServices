@@ -2,10 +2,10 @@
  * Calendar Details view handler for myAppointments page
  */
 
-import { formatFullDate } from '../../utils/date.js';
-import { getTodayInfo } from '../utils/todayUtils.js';
+import { formatDate } from '../../utils/date.js';
+import { getTodayInfo } from '../../utils/today.js';
 import { getTimeInfo } from '../../utils/time.js';
-import { TIME_SLOT_HEIGHT } from '../components/constants.js';
+import { TIME_SLOT_HEIGHT } from '../../config/constants.js';
 
 const infoToday = getTodayInfo();
 let timeIndicatorInterval = null;
@@ -30,7 +30,7 @@ export function generateDetails(date, fromHour, toHour) {
 
     //append date of the selected day
     const containerDate = document.createElement('div');
-    containerDate.textContent = formatFullDate(date);
+    containerDate.textContent = formatDate(date);
     containerDate.className = 'calendar-details-date';
     container.appendChild(containerDate);
 

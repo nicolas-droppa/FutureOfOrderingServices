@@ -3,6 +3,7 @@
 @section('title', 'Bexora | Book a Service')
 
 @section('content')
+@vite('resources/js/pages/welcome/entry.js')
 <div class="welcome-container">
     <div class="welcome-card">
         <h1>Book an appointment.</h1>

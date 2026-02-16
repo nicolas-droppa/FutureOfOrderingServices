@@ -2,9 +2,9 @@
  * Calendar view handler for myAppointments page
  */
 
-import { daysInMonth, formatDate, getFirstDayOfMonth } from '../utils/dateUtils.js';
-import { getAppointmentsForDate } from '../utils/appointmentUtils.js';
-import { getTodayInfo } from '../utils/todayUtils.js';
+import { daysInMonth, formatDate, getFirstDayOfMonth } from '../../utils/date.js';
+import { getAppointmentsForDate } from '../../utils/appointment.js';
+import { getTodayInfo } from '../../utils/today.js';
 
 const info = getTodayInfo();
 let currentYear = info.year;
