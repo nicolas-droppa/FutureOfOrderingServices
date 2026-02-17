@@ -2,97 +2,126 @@
  * Calendar Details view handler for myAppointments page
  */
 
-import { formatDate } from '../../utils/date.js';
-import { getTodayInfo } from '../../utils/today.js';
 import { getTimeInfo } from '../../utils/time.js';
 import { TIME_SLOT_HEIGHT } from '../../config/constants.js';
 
-const infoToday = getTodayInfo();
 let timeIndicatorInterval = null;
-let infoTime = getTimeInfo();
 
 /**
  * Generate and render the details for selected day
- * @param {number} year
- * @param {number} month - 0-indexed
- * @param {number} day
+ * @param {string} date
+ * @param {number} startHour
+ * @param {number} endHour
  */
-export function generateDetails(date, fromHour, toHour) {
+export function generateDetails(date, startHour, endHour) {
     const container = document.getElementById('calendarDetails');
     if (!container) {
         console.warn('[calendarDetails] #calendarDetails not found');
         return;
     }
 
-    container.innerHTML = '';
-
-    console.log(date);
-
-    //append date of the selected day
-    const containerDate = document.createElement('div');
-    containerDate.textContent = formatDate(date);
-    containerDate.className = 'calendar-details-date';
-    container.appendChild(containerDate);
-
-    //append number of appointments of the selected day
-    const appointmentsCountDate = document.createElement('div');
-    appointmentsCountDate.textContent = '[ 0 ] Appointments for this day' // will fetch this shit later
-    appointmentsCountDate.className = 'calendar-details-summary';
-    container.appendChild(appointmentsCountDate);
-
-    //append time range of the selected day
-    const containerTimeContent = document.createElement('div');
-    containerTimeContent.className = 'calendar-details-content';
-
-    for (let hour = fromHour; hour <= toHour; hour++) {
-        const timeSlot = document.createElement('div');
-        timeSlot.className = 'calendar-details-time-slot';
-
-        const timeSlotTime = document.createElement('div');
-        timeSlotTime.textContent = `${String(hour).padStart(2, '0')}:00`;
-        timeSlotTime.className = 'calendar-details-time-slot-time';
-        timeSlot.appendChild(timeSlotTime);
-
-        const timeSlotContent = document.createElement('div');
-        timeSlotContent.className = 'calendar-details-time-slot-content';
-        timeSlot.appendChild(timeSlotContent);
-
-        containerTimeContent.appendChild(timeSlot);
-    }
-
-    // LINE INDICATING CURRENT TIME
-    const timeIndicator = document.createElement('div');
-    timeIndicator.className = 'calendar-details-time-indicator';
-    containerTimeContent.appendChild(timeIndicator);
-
-    container.appendChild(containerTimeContent);
-
-    let totalHours = toHour - fromHour;  // time slot count... :)
-
-    function updateTimeIndicator() {
-        const infoTime = getTimeInfo();
-        const currentTimeHour = infoTime.hours;
-        const currentTimeMinutes = infoTime.minutes;
-
-        let position =
-            (TIME_SLOT_HEIGHT * (currentTimeHour - fromHour)) +
-            (TIME_SLOT_HEIGHT * currentTimeMinutes / 60);
-
-        if (currentTimeHour < fromHour) {
-            position = 0;
-        } else if (currentTimeHour >= toHour) {
-            position = (TIME_SLOT_HEIGHT * totalHours ) - 0.125;
-        }
-
-        timeIndicator.style.top = `${position}rem`;
-    }
-
-    updateTimeIndicator();
-
     if (timeIndicatorInterval) {
         clearInterval(timeIndicatorInterval);
     }
 
-    timeIndicatorInterval = setInterval(updateTimeIndicator, 1000);
+    container.innerHTML = '';
 
+    addDateToContainer(container, date);
+    addNumOfAppotinmentsForDay(container, 0); // TODO: fetch this shit later
+
+    const containerTimeContent = document.createElement('div');
+    containerTimeContent.className = 'calendar-details-content';
+    addTimeSlotsForDay(containerTimeContent, startHour, endHour);
+
+    const timeIndicator = initTimeIndicator(containerTimeContent);
+
+    container.appendChild(containerTimeContent);
+
+
+    const runner = () => updateTimeIndicator(timeIndicator, startHour, endHour);
+    runner();
+    
+    timeIndicatorInterval = setInterval(runner, 60000);
+}
+
+/**
+ * Initialize time indicator
+ * @param {element} container - master div for appending
+ * 
+ * @returns {element} timeIndicator - div of which we will be updating position 
+ */
+function initTimeIndicator(container) {
+    const timeIndicator = document.createElement('div');
+    timeIndicator.className = 'calendar-details-time-indicator';
+    container.appendChild(timeIndicator);
+    return timeIndicator;
+}
+
+/**
+ * Updates position of time indicator
+ * @param {element} indicator - div of which we will be updating position 
+ * @param {number} startHour
+ * @param {number} endHour
+ */
+function updateTimeIndicator(indicator, startHour, endHour) {
+    if (!indicator) return;
+
+    const { hours, minutes } = getTimeInfo();
+    
+    let position = (TIME_SLOT_HEIGHT * (hours - startHour)) + 
+                   (TIME_SLOT_HEIGHT * minutes / 60);
+
+    if (hours < startHour || hours >= endHour) {
+        indicator.style.display = 'none';
+    } else {
+        indicator.style.display = 'block';
+        indicator.style.top = `${position}rem`;
+    }
+}
+
+/**
+ * Renders date in container
+ * @param {element} container - master div for appending
+ * @param {string} date
+ */
+function addDateToContainer(container, date) {
+    const div = document.createElement('div');
+    div.className = 'calendar-details-date';
+    div.textContent = date;
+    container.appendChild(div);
+}
+
+/**
+ * Renders date in container
+ * @param {element} container - master div for appending
+ * @param {string} count - number of appointments in day
+ */
+function addNumOfAppotinmentsForDay(container, count) {
+    const div = document.createElement('div');
+    div.className = 'calendar-details-summary';
+    div.textContent = `[ ${count} ] Appointments for this day`;
+    container.appendChild(div);
+}
+
+/**
+ * Renders date in container
+ * @param {element} container - master div for appending
+ * @param {number} startHour
+ * @param {number} endHour
+ */
+function addTimeSlotsForDay(container, startHour, endHour) {
+    for (let hour = startHour; hour <= endHour; hour++) {
+        const div = document.createElement('div');
+        div.className = 'calendar-details-time-slot';
+
+        const time = document.createElement('div');
+        time.className = 'calendar-details-time-slot-time';
+        time.textContent = `${String(hour).padStart(2, '0')}:00`;
+        
+        const content = document.createElement('div');
+        content.className = 'calendar-details-time-slot-content';
+
+        div.append(time, content);
+        container.appendChild(div);
+    }
 }
