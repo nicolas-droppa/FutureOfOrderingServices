@@ -36,37 +36,33 @@ export function generateCalendar(year, month) {
     const calendar = document.createElement('div');
     calendar.className = 'calendar-grid';
 
-    // Weekday header - starting with Monday
-    ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'].forEach(d => {
-        const header = document.createElement('div');
-        header.textContent = d;
-        header.className = 'calendar-weekday';
-        if (currentDay.startsWith(header.textContent)) header.classList.add('active-date');
-        calendar.appendChild(header);
-    });
+    addWeekdayHeader(calendar);
 
-    // Empty cells before first day
-    let totalDaysPrevMonth = 0;
+    const totalDaysPrevMonth = getEmptyCellsBeforeFirstDay(year, month);
+    addEmptyCellsToCalendar(calendar, firstDayWeek, totalDaysPrevMonth);
 
-    if (month == 0) {
-        totalDaysPrevMonth = daysInMonth(year - 1, 11);
-    } else {
-        totalDaysPrevMonth = daysInMonth(year, month - 1);
-    }
+    addDayCellsToCalendar(calendar, totalDays, year, month, currentDayNumber);
 
-    for (let i = 0; i < firstDayWeek; i++) {
+    const totalCells = firstDayWeek + totalDays;
+    const remainingCells = 7 * 6 - totalCells;
+    addEmptyCellsToCalendarv2(calendar, remainingCells);
+
+    container.appendChild(calendar);
+}
+
+function addEmptyCellsToCalendarv2(container, remainingCells) {
+    for (let i = 1; i <= remainingCells; i++) {
         const empty = document.createElement('div');
         empty.className = 'calendar-cell calendar-cell--empty';
-
         const number = document.createElement('div');
         number.className = 'calendar-day-number';
-        number.textContent = totalDaysPrevMonth - firstDayWeek + 1 + i;
+        number.textContent = i;
         empty.appendChild(number);
-
-        calendar.appendChild(empty);
+        container.appendChild(empty);
     }
+}
 
-    // Days in current month
+function addDayCellsToCalendar(calendar, totalDays, year, month, currentDayNumber) {
     for (let day = 1; day <= totalDays; day++) {
         const dateStr = formatDate(new Date(year, month, day));
         const dayDiv = document.createElement('div');
@@ -93,21 +89,36 @@ export function generateCalendar(year, month) {
 
         calendar.appendChild(dayDiv);
     }
+}
 
-    //Days after end of month
-    const totalCells = firstDayWeek + totalDays;
-    const remainingCells = 7 * 6 - totalCells;
-    for (let i = 1; i <= remainingCells; i++) {
-        const empty = document.createElement('div');
-        empty.className = 'calendar-cell calendar-cell--empty';
+function addEmptyCellsToCalendar(container, firstDayWeek, totalDaysPrevMonth) {
+    for (let i = 0; i < firstDayWeek; i++) {
+        const div = document.createElement('div');
+        div.className = 'calendar-cell calendar-cell--empty';
+
         const number = document.createElement('div');
         number.className = 'calendar-day-number';
-        number.textContent = i;
-        empty.appendChild(number);
-        calendar.appendChild(empty);
-    }
+        number.textContent = totalDaysPrevMonth - firstDayWeek + 1 + i;
+        div.appendChild(number);
 
-    container.appendChild(calendar);
+        container.appendChild(div);
+    }
+}
+
+function getEmptyCellsBeforeFirstDay(year, month) {
+    return month == 0 ? daysInMonth(year - 1, 11) : daysInMonth(year, month - 1);
+}
+
+function addWeekdayHeader(container) {
+    ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'].forEach(d => {
+        const header = document.createElement('div');
+        header.textContent = d;
+        header.className = 'calendar-weekday';
+
+        if (currentDay.startsWith(header.textContent)) header.classList.add('active-date');
+        
+        container.appendChild(header);
+    });
 }
 
 /**
