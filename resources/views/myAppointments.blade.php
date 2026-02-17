@@ -76,7 +76,6 @@
     </div>
 </div>
 
-@vite('resources/js/pages/myAppointmentsEntry.js')
-
+@vite('resources/js/pages/myAppointments/entry.js')
 
 @endsection

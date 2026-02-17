@@ -1,10 +1,9 @@
-function initNotificationsMenu() {
-    const notificationsMenu = document.getElementById('notificationsMenu');
+export default function initNotificationsMenu() {
+    const notificationsMenuButtton = document.getElementById('notificationsMenu');
     const notificationsMenuContent = document.getElementById('notificationsMenuContent');
     const settingsOverlay = document.getElementById('settingsOverlay');
 
-    if (!notificationsMenu || !notificationsMenuContent) {
-        console.warn('Notifications menu elements not found');
+    if (!notificationsMenuButtton || !notificationsMenuContent) {
         return;
     }
 
@@ -22,11 +21,12 @@ function initNotificationsMenu() {
     }
 
     // Hover icon
-    notificationsMenu.addEventListener('mouseenter', () => {
+    notificationsMenuButtton.addEventListener('mouseenter', () => {
         isHoveringButton = true;
         openMenu();
     });
-    notificationsMenu.addEventListener('mouseleave', () => {
+
+    notificationsMenuButtton.addEventListener('mouseleave', () => {
         isHoveringButton = false;
         if (!isHoveringContent) closeMenu();
     });
@@ -36,6 +36,7 @@ function initNotificationsMenu() {
         isHoveringContent = true;
         openMenu();
     });
+
     notificationsMenuContent.addEventListener('mouseleave', () => {
         isHoveringContent = false;
         if (!isHoveringButton) closeMenu();
@@ -43,10 +44,4 @@ function initNotificationsMenu() {
 
     // Close on overlay click
     settingsOverlay?.addEventListener('click', closeMenu);
-}
-
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initNotificationsMenu);
-} else {
-    initNotificationsMenu();
 }

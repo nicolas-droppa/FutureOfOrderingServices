@@ -6,7 +6,7 @@
 <div class="welcome-container">
     <div class="welcome-card">
         <h1>Book an appointment.</h1>
-        <input type="text" placeholder="Text appended from textGenerator.js">
+        <input id="aiBookingInput" type="text" placeholder="Text appended from textGenerator.js">
     </div>
 
     <div class="welcome-buttons">
@@ -22,4 +22,7 @@
         </a>
     </div>
 </div>
+
+@vite('resources/js/pages/welcome/entry.js')
+
 @endsection
