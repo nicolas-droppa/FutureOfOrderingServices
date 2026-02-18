@@ -50,15 +50,28 @@ export function generateCalendar(year, month) {
     container.appendChild(calendar);
 }
 
+function getCellTypeName(type) {
+    switch(type) {
+        case "empty":
+            return "calendar-cell calendar-cell--empty"
+        default:
+            return "calendar-cell"
+    }
+} 
+
+function addCellToCalendar(container, date, type="empty") {
+    const div = document.createElement('div');
+    div.className = getCellTypeName(type)
+    const number = document.createElement('div');
+    number.className = 'calendar-day-number';
+    number.textContent = date;
+    div.appendChild(number);
+    container.appendChild(div);
+}
+
 function addEmptyCellsToCalendarv2(container, remainingCells) {
     for (let i = 1; i <= remainingCells; i++) {
-        const empty = document.createElement('div');
-        empty.className = 'calendar-cell calendar-cell--empty';
-        const number = document.createElement('div');
-        number.className = 'calendar-day-number';
-        number.textContent = i;
-        empty.appendChild(number);
-        container.appendChild(empty);
+        addCellToCalendar(container, i, "empty");
     }
 }
 
@@ -74,7 +87,6 @@ function addDayCellsToCalendar(calendar, totalDays, year, month, currentDayNumbe
         number.className = 'calendar-day-number';
         number.textContent = day;
         if (number.textContent == currentDayNumber && month == info.monthNumber - 1 && year == info.year) {
-            // mark today's cell separately from the selected/active cell
             dayDiv.classList.add('today');
         }
         dayDiv.appendChild(number);
