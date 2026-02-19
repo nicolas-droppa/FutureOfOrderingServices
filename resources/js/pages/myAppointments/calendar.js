@@ -39,69 +39,96 @@ export function generateCalendar(year, month) {
     addWeekdayHeader(calendar);
 
     const totalDaysPrevMonth = getEmptyCellsBeforeFirstDay(year, month);
-    addEmptyCellsToCalendar(calendar, firstDayWeek, totalDaysPrevMonth);
+    addEmptyCellsBeforeMonth(calendar, firstDayWeek, totalDaysPrevMonth);
 
-    addDayCellsToCalendar(calendar, totalDays, year, month, currentDayNumber);
+    addCellsCurrentMonth(calendar, totalDays, year, month, currentDayNumber);
 
     const totalCells = firstDayWeek + totalDays;
     const remainingCells = 7 * 6 - totalCells;
-    addEmptyCellsToCalendarv2(calendar, remainingCells);
+    addEmptyCellsAfterMonth(calendar, remainingCells);
 
     container.appendChild(calendar);
 }
 
-function addEmptyCellsToCalendarv2(container, remainingCells) {
+function getCellTypeName(type) {
+    switch(type) {
+        case "empty":
+            return "calendar-cell calendar-cell--empty"
+        default:
+            return "calendar-cell"
+    }
+} 
+
+/**
+ * Adds empty cells to calendar (bleached cells to make calendar consistentn width and height)
+ * @param {element} container - master container for appending
+ * @param {string} date
+ * @param {string} type - cell type [ empty/default ]
+ */
+function addCellToCalendar(container, date, type="empty") {
+    const div = document.createElement('div');
+    div.className = getCellTypeName(type)
+    const number = document.createElement('div');
+    number.className = 'calendar-day-number';
+    number.textContent = date;
+    div.appendChild(number);
+    container.appendChild(div);
+    return div;
+}
+
+function addEmptyCellsAfterMonth(container, remainingCells) {
     for (let i = 1; i <= remainingCells; i++) {
-        const empty = document.createElement('div');
-        empty.className = 'calendar-cell calendar-cell--empty';
-        const number = document.createElement('div');
-        number.className = 'calendar-day-number';
-        number.textContent = i;
-        empty.appendChild(number);
-        container.appendChild(empty);
+        addCellToCalendar(container, i, "empty");
     }
 }
 
-function addDayCellsToCalendar(calendar, totalDays, year, month, currentDayNumber) {
+/**
+ * Adds appointments to cell in calendar
+ * @param {element} div - cell for adding appointments to
+ * @param {string} dateStr - date
+ */
+function addAppointmentsToCell(div, dateStr) {
+    const appointments = getAppointmentsForDate(dateStr);
+    if (appointments.length > 0) {
+        div.classList.add('calendar-cell--has-appointments');
+        div.title = appointments
+            .map(a => `${a.title} (${a.duration} min)`)
+            .join('\n');
+    }
+}
+
+/**
+ * Adds empty cells to calendar (bleached cells to make calendar consistentn width and height)
+ * @param {element} container - master container for appending
+ * @param {number} totalDays - number of days in current month
+ * @param {number} year
+ * @param {number} month
+ * @param {number} currentDayNumber
+ */
+function addCellsCurrentMonth(container, totalDays, year, month, currentDayNumber) {
     for (let day = 1; day <= totalDays; day++) {
+        const div = addCellToCalendar(container, day, "non-empty");
+
         const dateStr = formatDate(new Date(year, month, day));
-        const dayDiv = document.createElement('div');
-        dayDiv.className = 'calendar-cell';
 
-        dayDiv.dataset.date = dateStr;  //storing date -> using in details of the day
-
-        const number = document.createElement('div');
-        number.className = 'calendar-day-number';
-        number.textContent = day;
-        if (number.textContent == currentDayNumber && month == info.monthNumber - 1 && year == info.year) {
-            // mark today's cell separately from the selected/active cell
-            dayDiv.classList.add('today');
-        }
-        dayDiv.appendChild(number);
-
-        const dayAppointments = getAppointmentsForDate(dateStr);
-        if (dayAppointments.length > 0) {
-            dayDiv.classList.add('calendar-cell--has-appointments');
-            dayDiv.title = dayAppointments
-                .map(a => `${a.title} (${a.duration} min)`)
-                .join('\n');
+        div.dataset.date = dateStr;
+        if (div.textContent == currentDayNumber && month == info.monthNumber - 1 && year == info.year) {
+            div.classList.add('today');
         }
 
-        calendar.appendChild(dayDiv);
+        addAppointmentsToCell(div, dateStr);
     }
 }
 
-function addEmptyCellsToCalendar(container, firstDayWeek, totalDaysPrevMonth) {
-    for (let i = 0; i < firstDayWeek; i++) {
-        const div = document.createElement('div');
-        div.className = 'calendar-cell calendar-cell--empty';
-
-        const number = document.createElement('div');
-        number.className = 'calendar-day-number';
-        number.textContent = totalDaysPrevMonth - firstDayWeek + 1 + i;
-        div.appendChild(number);
-
-        container.appendChild(div);
+/**
+ * Adds empty cells to calendar (bleached cells to make calendar consistentn width and height)
+ * @param {element} container - master container for appending
+ * @param {number} firstDayWeek - when is monday...
+ * @param {number} totalDaysPrevMonth - number of days from previous month
+ */
+function addEmptyCellsBeforeMonth(container, firstDayWeek, totalDaysPrevMonth) {
+    for (let i = 1; i <= firstDayWeek; i++) {
+        addCellToCalendar(container, totalDaysPrevMonth - firstDayWeek + 1 + i, "empty");
     }
 }
 
@@ -109,6 +136,10 @@ function getEmptyCellsBeforeFirstDay(year, month) {
     return month == 0 ? daysInMonth(year - 1, 11) : daysInMonth(year, month - 1);
 }
 
+/**
+ * Adds weekday header to calendar
+ * @param {element} container - master container for appending
+ */
 function addWeekdayHeader(container) {
     ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'].forEach(d => {
         const header = document.createElement('div');
